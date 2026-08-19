@@ -1,36 +1,177 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BITMIND STUDIO
 
-## Getting Started
+Web & Digital Product Studio
 
-First, run the development server:
+## Project Overview
+
+BITMIND STUDIO is the official website foundation for an independent web and digital product studio based in Indonesia.
+
+Primary tagline:
+
+> We design and build digital experiences that work.
+
+The project is being built as a scalable studio website that can grow into a digital product company platform.
+
+## Brand Positioning
+
+BITMIND STUDIO combines three core ideas:
+
+- **BIT** — technology, digital, software, internet
+- **MIND** — ideas, creativity, strategy, design thinking, problem solving
+- **STUDIO** — a place where ideas are designed, built, and turned into digital experiences
+
+Positioning:
+
+> **BITMIND STUDIO — Web & Digital Product Studio**
+
+## Technology Stack
+
+- Next.js 16
+- App Router
+- TypeScript
+- Tailwind CSS 4
+- ESLint
+- Prettier
+- Lucide React
+- Framer Motion
+
+## Installation
+
+```bash
+npm install
+```
+
+## Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Folder Architecture
 
-## Learn More
+```text
+src/
+├── app/
+├── components/
+│   ├── layout/
+│   ├── navigation/
+│   ├── sections/
+│   ├── shared/
+│   └── ui/
+├── data/
+├── lib/
+├── types/
+└── utils/
 
-To learn more about Next.js, take a look at the following resources:
+public/
+├── brand/
+├── products/
+└── projects/
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Routing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Available routes:
 
-## Deploy on Vercel
+- `/`
+- `/work`
+- `/work/[slug]`
+- `/services`
+- `/products`
+- `/products/[slug]`
+- `/about`
+- `/contact`
+- `/admin/login`
+- `/admin`
+- `/admin/projects`
+- `/admin/projects/new`
+- `/admin/projects/[id]/edit`
+- `/admin/products`
+- `/admin/products/new`
+- `/admin/products/[id]/edit`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Current Development Phase
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Phase 5 — CMS, Project & Product Management**
+
+Current CMS work includes:
+
+- Supabase SSR client architecture and auth Proxy
+- Admin-only login, dashboard, Projects, Products, and media management
+- Draft, published, and archived content states
+- Private Storage buckets with signed public media URLs
+- Local and Supabase content repository modes
+- Database migration and idempotent seed content
+
+## Current Status
+
+```text
+Homepage                         Complete
+Portfolio & Case Studies         Complete
+Services & Conversion UI         Complete
+Brand Integration                Complete
+Responsive Refinement            Complete
+CMS / Supabase Source Layer      In Development
+Inquiry Backend                  Planned
+Production Deployment            Next
+```
+
+The CMS source architecture is implemented and builds in local content mode.
+Remote Supabase migration, seed, Storage, admin account, and authenticated CRUD
+verification still require project credentials and setup.
+
+## Content Source
+
+Development can explicitly use local source data:
+
+```text
+CONTENT_SOURCE=local
+```
+
+CMS deployments use:
+
+```text
+CONTENT_SOURCE=supabase
+```
+
+Production requires an explicit content source. It never silently falls back after
+a database configuration failure. See `.env.example` and
+[`docs/supabase-setup.md`](docs/supabase-setup.md).
+
+## Supabase Architecture
+
+```text
+src/lib/supabase/     Browser, server, service-role, and Proxy clients
+src/lib/content/      Public repository functions and database mappers
+src/lib/admin/        Admin queries and server validation
+supabase/migrations/  Reproducible CMS schema, RLS, and Storage policies
+supabase/seed.sql     Idempotent migration of existing public content
+```
+
+## Brand Assets
+
+Official and generated brand assets are stored in:
+
+```text
+public/brand/
+```
+
+Usage and color guidance is documented in [`docs/brand.md`](docs/brand.md).
+
+## Notes
+
+Phase 5 changes the content source and adds a functional admin architecture without
+redesigning the established public experience.
+
+It does **not** include:
+
+- inquiry/contact backend
+- ecommerce
+- remote Supabase deployment verification
+- production deployment
