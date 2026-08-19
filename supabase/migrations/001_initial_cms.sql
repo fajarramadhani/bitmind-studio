@@ -6,7 +6,7 @@ create table if not exists public.profiles (
   id uuid primary key references auth.users (id) on delete cascade,
   email text not null,
   display_name text,
-  role text not null default 'admin',
+  role text not null,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   constraint profiles_email_check check (email = lower(email) and position('@' in email) > 1),
@@ -48,6 +48,9 @@ create table if not exists public.projects (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   constraint projects_slug_check check (slug ~ '^[a-z0-9]+(?:-[a-z0-9]+)*$'),
+  constraint projects_title_check check (nullif(btrim(title), '') is not null),
+  constraint projects_category_check check (nullif(btrim(category), '') is not null),
+  constraint projects_short_description_check check (nullif(btrim(short_description), '') is not null),
   constraint projects_kind_check check (project_kind in ('client', 'internal', 'concept')),
   constraint projects_client_check check (project_kind <> 'client' or nullif(btrim(client), '') is not null),
   constraint projects_year_check check (year between 1900 and 2200),
@@ -78,6 +81,8 @@ create table if not exists public.project_media (
     storage_path ~ '^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\.(png|jpe?g|webp|avif)$'
     and split_part(storage_path, '/', 1) = project_id::text
   ),
+  constraint project_media_alt_text_check check (nullif(btrim(alt_text), '') is not null),
+  constraint project_media_source_check check (public_url is null),
   constraint project_media_public_url_check check (public_url is null or public_url ~ '^https?://'),
   constraint project_media_type_check check (media_type = 'image'),
   constraint project_media_layout_check check (layout in ('full', 'half', 'mobile', 'cover')),
@@ -109,6 +114,9 @@ create table if not exists public.products (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   constraint products_slug_check check (slug ~ '^[a-z0-9]+(?:-[a-z0-9]+)*$'),
+  constraint products_title_check check (nullif(btrim(title), '') is not null),
+  constraint products_category_check check (nullif(btrim(category), '') is not null),
+  constraint products_short_description_check check (nullif(btrim(short_description), '') is not null),
   constraint products_availability_check check (availability_status in ('coming-soon', 'available', 'unavailable')),
   constraint products_publish_status_check check (publish_status in ('draft', 'published', 'archived')),
   constraint products_publication_check check (publish_status <> 'published' or published_at is not null),
@@ -139,6 +147,8 @@ create table if not exists public.product_media (
     storage_path ~ '^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\.(png|jpe?g|webp|avif)$'
     and split_part(storage_path, '/', 1) = product_id::text
   ),
+  constraint product_media_alt_text_check check (nullif(btrim(alt_text), '') is not null),
+  constraint product_media_source_check check (public_url is null),
   constraint product_media_public_url_check check (public_url is null or public_url ~ '^https?://'),
   constraint product_media_type_check check (media_type = 'image'),
   constraint product_media_layout_check check (layout in ('full', 'half', 'mobile', 'cover')),
@@ -151,12 +161,21 @@ create index if not exists projects_public_listing_idx
   on public.projects (featured desc, sort_order, published_at desc) where publish_status = 'published';
 create index if not exists projects_kind_idx on public.projects (project_kind);
 create index if not exists projects_category_idx on public.projects (category);
+create index if not exists projects_next_project_slug_idx on public.projects (next_project_slug);
+create index if not exists projects_created_by_idx on public.projects (created_by);
+create index if not exists projects_updated_by_idx on public.projects (updated_by);
 create index if not exists project_media_project_sort_idx on public.project_media (project_id, sort_order, id);
+create unique index if not exists project_media_one_cover_idx
+  on public.project_media (project_id) where layout = 'cover';
 create index if not exists products_public_listing_idx
   on public.products (featured desc, sort_order, published_at desc) where publish_status = 'published';
 create index if not exists products_availability_idx on public.products (availability_status);
 create index if not exists products_category_idx on public.products (category);
+create index if not exists products_created_by_idx on public.products (created_by);
+create index if not exists products_updated_by_idx on public.products (updated_by);
 create index if not exists product_media_product_sort_idx on public.product_media (product_id, sort_order, id);
+create unique index if not exists product_media_one_cover_idx
+  on public.product_media (product_id) where layout = 'cover';
 
 create or replace function public.set_cms_audit_fields()
 returns trigger

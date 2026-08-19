@@ -7,8 +7,10 @@ import type {
   ProjectMediaRow,
   ProjectRow,
 } from "@/types/database"
+import { requireAdmin } from "@/lib/auth/admin"
 
 export async function getAdminProjects() {
+  await requireAdmin()
   const supabase = await createClient()
   const { data, error } = await supabase
     .from("projects")
@@ -19,6 +21,7 @@ export async function getAdminProjects() {
 }
 
 export async function getAdminProjectById(id: string) {
+  await requireAdmin()
   const supabase = await createClient()
   const [{ data: project, error }, { data: media, error: mediaError }] =
     await Promise.all([
@@ -34,6 +37,7 @@ export async function getAdminProjectById(id: string) {
 }
 
 export async function getAdminProducts() {
+  await requireAdmin()
   const supabase = await createClient()
   const { data, error } = await supabase
     .from("products")
@@ -44,6 +48,7 @@ export async function getAdminProducts() {
 }
 
 export async function getAdminProductById(id: string) {
+  await requireAdmin()
   const supabase = await createClient()
   const [{ data: product, error }, { data: media, error: mediaError }] =
     await Promise.all([

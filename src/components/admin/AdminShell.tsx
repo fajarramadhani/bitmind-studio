@@ -2,12 +2,7 @@ import Link from "next/link"
 import { BrandLogo } from "@/components/brand/BrandLogo"
 import { logoutAction } from "@/app/admin/actions"
 import type { AdminSession } from "@/lib/auth/admin"
-
-const adminLinks = [
-  ["Overview", "/admin"],
-  ["Projects", "/admin/projects"],
-  ["Products", "/admin/products"],
-] as const
+import { AdminNav } from "@/components/admin/AdminNav"
 
 export function AdminShell({
   admin,
@@ -17,7 +12,7 @@ export function AdminShell({
   children: React.ReactNode
 }) {
   return (
-    <div className="fixed inset-0 z-[70] overflow-y-auto bg-background text-foreground">
+    <div className="admin-shell min-h-dvh bg-background text-foreground">
       <div className="mx-auto grid min-h-dvh max-w-[1600px] lg:grid-cols-[240px_1fr]">
         <aside className="border-b border-border bg-surface p-5 lg:border-b-0 lg:border-r lg:p-7">
           <div className="flex items-center justify-between lg:block">
@@ -26,17 +21,7 @@ export function AdminShell({
               CMS
             </span>
           </div>
-          <nav aria-label="Admin navigation" className="mt-7 flex gap-2 overflow-x-auto lg:flex-col">
-            {adminLinks.map(([label, href]) => (
-              <Link
-                key={href}
-                href={href}
-                className="whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
+          <AdminNav />
           <div className="mt-7 border-t border-border pt-5 lg:mt-10">
             <p className="truncate text-xs text-muted-foreground">
               {admin.displayName ?? admin.email ?? "Administrator"}
@@ -53,7 +38,7 @@ export function AdminShell({
             </div>
           </div>
         </aside>
-        <main className="min-w-0 p-5 sm:p-8 lg:p-10">{children}</main>
+        <div className="min-w-0 p-5 sm:p-8 lg:p-10">{children}</div>
       </div>
     </div>
   )

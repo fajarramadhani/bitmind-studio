@@ -5,6 +5,7 @@ import { getProductBySlug, getPublishedProducts } from "@/lib/content"
 import { Button } from "@/components/ui/Button"
 import { Badge } from "@/components/ui/Badge"
 import Image from "next/image"
+import { ProjectGallery } from "@/components/ui/ProjectGallery"
 
 type ProductPageProps = {
   params: Promise<{ slug: string }>
@@ -71,8 +72,24 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 {product.description}
               </p>
             ) : null}
+            {product.demoUrl ? (
+              <a
+                href={product.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium text-accent hover:underline"
+              >
+                View Demo ↗
+              </a>
+            ) : null}
             <div className="pt-4">
-              <Button size="lg" disabled={product.status !== "available"}>
+              <Button
+                href={product.status === "available" ? product.purchaseUrl : undefined}
+                target={product.purchaseUrl ? "_blank" : undefined}
+                rel={product.purchaseUrl ? "noopener noreferrer" : undefined}
+                size="lg"
+                disabled={product.status !== "available" || !product.purchaseUrl}
+              >
                 {product.status === "available"
                   ? "Buy Now"
                   : product.status === "coming-soon"
@@ -82,6 +99,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </div>
           </div>
         </div>
+        {product.gallery?.length ? (
+          <ProjectGallery items={product.gallery} className="mt-16" />
+        ) : null}
       </Container>
     </Section>
   )

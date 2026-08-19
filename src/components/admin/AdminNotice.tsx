@@ -4,7 +4,14 @@ export function AdminNotice({
   searchParams?: Record<string, string | string[] | undefined>
 }) {
   const error = typeof searchParams?.error === "string" ? searchParams.error : null
-  const success = ["saved", "uploaded", "media-saved", "media-deleted"].some(
+  const success = [
+    "saved",
+    "uploaded",
+    "media-saved",
+    "media-deleted",
+    "archived",
+    "deleted",
+  ].some(
     (key) => searchParams?.[key] === "1"
   )
 

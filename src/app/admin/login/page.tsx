@@ -2,6 +2,8 @@ import Link from "next/link"
 import { BrandLogo } from "@/components/brand/BrandLogo"
 import { loginAction } from "@/app/admin/actions"
 import { hasSupabaseConfig } from "@/lib/content/config"
+import { getAdminSession } from "@/lib/auth/admin"
+import { redirect } from "next/navigation"
 
 export const metadata = { title: "Admin Login", robots: { index: false, follow: false } }
 
@@ -13,10 +15,13 @@ export default async function AdminLoginPage({
   const params = await searchParams
   const configured = hasSupabaseConfig()
   const error = params.error
+  const next = typeof params.next === "string" ? params.next : "/admin"
+
+  if (configured && (await getAdminSession())) redirect(next.startsWith("/admin") ? next : "/admin")
 
   return (
-    <div className="fixed inset-0 z-[80] flex min-h-dvh items-center justify-center bg-background p-5">
-      <main className="w-full max-w-md rounded-2xl border border-border bg-surface p-7 shadow-sm sm:p-9">
+    <div className="admin-login-shell fixed inset-0 z-[80] flex min-h-dvh items-center justify-center bg-background p-5">
+      <div className="w-full max-w-md rounded-2xl border border-border bg-surface p-7 shadow-sm sm:p-9">
         <BrandLogo />
         <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
           Content Management
@@ -33,6 +38,7 @@ export default async function AdminLoginPage({
           </div>
         ) : (
           <form action={loginAction} className="mt-7 grid gap-5">
+            <input type="hidden" name="next" value={next} />
             {error ? (
               <p role="alert" className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-800">
                 {error === "forbidden" ? "This account is not authorized as an administrator." : "Invalid email or password."}
@@ -44,7 +50,7 @@ export default async function AdminLoginPage({
           </form>
         )}
         <Link href="/" className="mt-6 inline-flex text-sm text-muted-foreground hover:text-foreground">← Back to website</Link>
-      </main>
+      </div>
     </div>
   )
 }

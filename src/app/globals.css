@@ -64,6 +64,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body:has(.admin-shell) > header,
+body:has(.admin-shell) > footer,
+body:has(.admin-login-shell) > header,
+body:has(.admin-login-shell) > footer {
+  display: none;
+}
+
 a {
   text-decoration: none;
 }

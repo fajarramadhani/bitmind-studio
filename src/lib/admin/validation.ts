@@ -85,6 +85,8 @@ export function validateProductForm(form: FormData) {
   const rawPrice = text(form, "price")
   const price = rawPrice ? Number(rawPrice) : null
   const demoUrl = text(form, "demo_url")
+  const purchaseUrl = text(form, "purchase_url")
+  const currency = (text(form, "currency") || "IDR").toUpperCase()
 
   if (!title || !slug || !category || !shortDescription) {
     throw new Error("Title, slug, category, and short description are required.")
@@ -94,7 +96,8 @@ export function validateProductForm(form: FormData) {
   if (!publishStatuses.includes(status)) throw new Error("Invalid publish status.")
   if (price !== null && (!Number.isFinite(price) || price < 0)) throw new Error("Price must be zero or greater.")
   if (!Number.isInteger(sortOrder) || sortOrder < 0) throw new Error("Sort order must be zero or greater.")
-  if (!validUrl(demoUrl)) throw new Error("Demo URL must use HTTP or HTTPS.")
+  if (!validUrl(demoUrl) || !validUrl(purchaseUrl)) throw new Error("Product URLs must use HTTP or HTTPS.")
+  if (!/^[A-Z]{3}$/.test(currency)) throw new Error("Currency must use a three-letter ISO code.")
 
   return {
     title,
@@ -105,8 +108,9 @@ export function validateProductForm(form: FormData) {
     availability_status: availability as "coming-soon" | "available" | "unavailable",
     publish_status: status,
     price,
-    currency: text(form, "currency") || "IDR",
+    currency,
     demo_url: nullable(demoUrl),
+    purchase_url: nullable(purchaseUrl),
     featured: form.get("featured") === "on",
     sort_order: sortOrder,
     published_at: status === "published" ? new Date().toISOString() : null,

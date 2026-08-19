@@ -60,6 +60,7 @@ export type ProductRow = {
   thumbnail_url: string | null
   cover_image_url: string | null
   demo_url: string | null
+  purchase_url: string | null
   featured: boolean
   sort_order: number
   published_at: string | null
@@ -114,7 +115,7 @@ export type Database = {
           id: string
           email?: string | null
           display_name?: string | null
-          role?: "admin"
+          role: "admin"
         },
         { email?: string | null; display_name?: string | null; role?: "admin" }
       >
