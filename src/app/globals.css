@@ -64,6 +64,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body:has(.admin-shell) > header,
+body:has(.admin-shell) > footer,
+body:has(.admin-login-shell) > header,
+body:has(.admin-login-shell) > footer {
+  display: none;
+}
+
 a {
   text-decoration: none;
 }
@@ -123,4 +130,10 @@ img {
 .admin-button-secondary:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+.admin-button:disabled,
+.admin-button-secondary:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
 }

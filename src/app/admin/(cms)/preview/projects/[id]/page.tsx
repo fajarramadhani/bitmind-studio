@@ -3,14 +3,14 @@ import Link from "next/link"
 import { Container } from "@/components/layout/Container"
 import { Badge } from "@/components/ui/Badge"
 import { getAdminProjectById } from "@/lib/admin/queries"
-import { createAdminClient } from "@/lib/supabase/admin"
+import { createClient } from "@/lib/supabase/server"
 import { mapProject, mapProjectMedia } from "@/lib/content/mappers"
 import { projectKindLabels } from "@/lib/content/labels"
 
 export default async function ProjectPreviewPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const { project: row, media } = await getAdminProjectById(id)
-  const adminClient = createAdminClient()
+  const adminClient = await createClient()
   const gallery = await Promise.all(media.map(async (item) => {
     const { data } = await adminClient.storage.from("project-media").createSignedUrl(item.storage_path, 900)
     return mapProjectMedia(item, data?.signedUrl ?? "")

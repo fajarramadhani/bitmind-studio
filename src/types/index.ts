@@ -68,6 +68,7 @@ export type Product = {
   description?: string
   coverImage?: string
   demoUrl?: string
+  purchaseUrl?: string
   currency?: string
   publishStatus?: PublishStatus
   sortOrder?: number

@@ -3,10 +3,14 @@ import "server-only"
 export type ContentSource = "local" | "supabase"
 
 export function hasSupabaseConfig() {
+  const privilegedKey =
+    process.env.SUPABASE_SECRET_KEY ??
+    process.env.SUPABASE_SERVICE_ROLE_KEY
+
   return Boolean(
     process.env.NEXT_PUBLIC_SUPABASE_URL &&
       process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY &&
-      process.env.SUPABASE_SERVICE_ROLE_KEY
+      privilegedKey
   )
 }
 
@@ -19,7 +23,7 @@ export function getContentSource(): ContentSource {
 
   if (configured === "supabase" && !hasSupabaseConfig()) {
     throw new Error(
-      "CONTENT_SOURCE is set to supabase, but Supabase environment variables are missing. Public private-media signing requires the server-only service role key."
+      "CONTENT_SOURCE is set to supabase, but Supabase environment variables are missing. Public private-media signing requires the server-only privileged Supabase key."
     )
   }
 

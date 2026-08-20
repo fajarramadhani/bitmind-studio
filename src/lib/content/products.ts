@@ -3,6 +3,7 @@ import "server-only"
 import { cache } from "react"
 import { products as localProducts } from "@/data/products"
 import { createClient } from "@/lib/supabase/server"
+import { createPublicClient } from "@/lib/supabase/public"
 import { getContentSource } from "@/lib/content/config"
 import { getStorageReference, resolveMediaUrl } from "@/lib/content/media"
 import { mapProduct, mapProductMedia } from "@/lib/content/mappers"
@@ -18,9 +19,9 @@ function localPublishedProducts(): Product[] {
   }))
 }
 
-async function hydrateRows(rows: ProductRow[]) {
+async function hydrateRows(rows: ProductRow[], usePublicClient = false) {
   if (!rows.length) return []
-  const supabase = await createClient()
+  const supabase = usePublicClient ? createPublicClient() : await createClient()
   const ids = rows.map((row) => row.id)
   const { data: mediaData, error } = await supabase
     .from("product_media")
@@ -61,7 +62,7 @@ async function hydrateRows(rows: ProductRow[]) {
 export const getPublishedProducts = cache(async (): Promise<Product[]> => {
   if (getContentSource() === "local") return localPublishedProducts()
 
-  const supabase = await createClient()
+  const supabase = createPublicClient()
   const { data, error } = await supabase
     .from("products")
     .select("*")
@@ -70,7 +71,7 @@ export const getPublishedProducts = cache(async (): Promise<Product[]> => {
     .order("published_at", { ascending: false })
 
   if (error) throw new Error("Unable to load published products.")
-  return hydrateRows((data ?? []) as ProductRow[])
+  return hydrateRows((data ?? []) as ProductRow[], true)
 })
 
 export const getFeaturedProducts = cache(async () =>

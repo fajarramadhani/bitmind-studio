@@ -5,6 +5,8 @@ import { getPublishedProjects } from "@/lib/content"
 import { FadeIn, Stagger, StaggerItem } from "@/components/shared/FadeIn"
 import { Button } from "@/components/ui/Button"
 
+export const dynamic = "force-dynamic"
+
 export const metadata = {
   title: "Work",
   description:

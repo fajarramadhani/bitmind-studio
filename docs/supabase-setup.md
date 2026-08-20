@@ -5,6 +5,11 @@
 Create a dedicated BITMIND STUDIO project from the Supabase dashboard. Do not use
 an unrelated or production database while testing this migration.
 
+This initial migration is designed for a clean Supabase project. Before applying it
+to any existing project, inventory `pg_policies` for the five CMS tables and
+`storage.objects`. Unexpected permissive policies must be reviewed and removed by
+an authorized database owner; bucket privacy alone does not override RLS policies.
+
 ## 2. Configure environment variables
 
 Copy `.env.example` to `.env.local` and provide values from Supabase project
@@ -81,7 +86,9 @@ Object paths must follow `<entity-uuid>/<object-uuid>.<extension>`, for example:
 
 The entity UUID should match the owning project or product. The object UUID avoids filename collisions. Store this relative path in `storage_path`.
 
-The website must obtain short-lived signed URLs from trusted server code. Do not store an expiring signed URL in `public_url`; leave it null for Supabase Storage assets. `public_url` and project/product URL fields may be used for durable external HTTP(S) assets when needed.
+The website obtains short-lived signed URLs from trusted server code. Do not store
+an expiring signed URL in `public_url`; Phase 5 keeps media-row `public_url` null and
+uses `storage_path` as the single durable media source.
 
 Database media rows and Storage objects do not cascade across systems. Delete both when removing an asset.
 
@@ -96,6 +103,7 @@ dashboard before uploading media through the CMS.
 - Confirm only admins can read or mutate Storage objects.
 - Confirm both buckets are private with an 8 MiB limit and no GIF MIME type.
 - Confirm invalid or non-UUID-nested object paths are rejected.
+- Confirm no unexpected policies exist under different names.
 
 Also test:
 
@@ -125,3 +133,14 @@ products
 product_media
 storage.objects rows for project-media and product-media
 ```
+
+## Signed URL and cache safety
+
+Signed URLs are bearer credentials and remain valid until they expire, even after
+content is archived. Public repositories sign only media reached through a
+published parent. Do not expose a general-purpose signing endpoint.
+
+The current lifetime is one hour. Public HTML/RSC/CDN caching must remain shorter
+than the signed URL lifetime, or media links can expire inside cached pages. If
+persistent page caching is added later, signed media delivery must move behind a
+durable authenticated media endpoint or use a coordinated refresh strategy.

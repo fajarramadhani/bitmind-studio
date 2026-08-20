@@ -3,6 +3,7 @@ import "server-only"
 import { cache } from "react"
 import { projects as localProjects } from "@/data/projects"
 import { createClient } from "@/lib/supabase/server"
+import { createPublicClient } from "@/lib/supabase/public"
 import { getContentSource } from "@/lib/content/config"
 import { getStorageReference, resolveMediaUrl } from "@/lib/content/media"
 import { mapProject, mapProjectMedia } from "@/lib/content/mappers"
@@ -18,9 +19,9 @@ function localPublishedProjects(): Project[] {
   }))
 }
 
-async function hydrateRows(rows: ProjectRow[]) {
+async function hydrateRows(rows: ProjectRow[], usePublicClient = false) {
   if (!rows.length) return []
-  const supabase = await createClient()
+  const supabase = usePublicClient ? createPublicClient() : await createClient()
   const ids = rows.map((row) => row.id)
   const { data: mediaData, error } = await supabase
     .from("project_media")
@@ -61,7 +62,7 @@ async function hydrateRows(rows: ProjectRow[]) {
 export const getPublishedProjects = cache(async (): Promise<Project[]> => {
   if (getContentSource() === "local") return localPublishedProjects()
 
-  const supabase = await createClient()
+  const supabase = createPublicClient()
   const { data, error } = await supabase
     .from("projects")
     .select("*")
@@ -70,7 +71,7 @@ export const getPublishedProjects = cache(async (): Promise<Project[]> => {
     .order("published_at", { ascending: false })
 
   if (error) throw new Error("Unable to load published projects.")
-  return hydrateRows((data ?? []) as ProjectRow[])
+  return hydrateRows((data ?? []) as ProjectRow[], true)
 })
 
 export const getFeaturedProjects = cache(async () =>

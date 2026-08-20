@@ -4,6 +4,8 @@ import { SectionHeading } from "@/components/layout/SectionHeading"
 import { ProductCard } from "@/components/ui/ProductCard"
 import { getPublishedProducts } from "@/lib/content"
 
+export const dynamic = "force-dynamic"
+
 export const metadata = {
   title: "Products",
 }

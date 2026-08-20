@@ -66,6 +66,7 @@ export function mapProduct(
     thumbnail: optional(row.thumbnail_url),
     coverImage: optional(row.cover_image_url),
     demoUrl: optional(row.demo_url),
+    purchaseUrl: optional(row.purchase_url),
     publishStatus: row.publish_status,
     sortOrder: row.sort_order,
     publishedAt: optional(row.published_at),

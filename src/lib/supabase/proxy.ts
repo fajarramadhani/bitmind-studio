@@ -32,8 +32,15 @@ export async function updateSession(request: NextRequest) {
   if (!data?.claims && !isLogin) {
     const loginUrl = request.nextUrl.clone()
     loginUrl.pathname = "/admin/login"
-    loginUrl.searchParams.set("next", request.nextUrl.pathname)
-    return NextResponse.redirect(loginUrl)
+    loginUrl.searchParams.set(
+      "next",
+      `${request.nextUrl.pathname}${request.nextUrl.search}`
+    )
+    const redirectResponse = NextResponse.redirect(loginUrl)
+    response.cookies.getAll().forEach((cookie) =>
+      redirectResponse.cookies.set(cookie)
+    )
+    return redirectResponse
   }
 
   return response
