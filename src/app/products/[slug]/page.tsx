@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import { Container } from "@/components/layout/Container"
 import { Section } from "@/components/layout/Section"
-import { getProductBySlug, getPublishedProducts } from "@/lib/content"
+import { getProductBySlug } from "@/lib/content"
 import { Button } from "@/components/ui/Button"
 import { Badge } from "@/components/ui/Badge"
 import Image from "next/image"
@@ -10,6 +10,8 @@ import { ProjectGallery } from "@/components/ui/ProjectGallery"
 type ProductPageProps = {
   params: Promise<{ slug: string }>
 }
+
+export const dynamic = "force-dynamic"
 
 export async function generateMetadata({ params }: ProductPageProps) {
   const { slug } = await params
@@ -105,8 +107,4 @@ export default async function ProductPage({ params }: ProductPageProps) {
       </Container>
     </Section>
   )
-}
-
-export async function generateStaticParams() {
-  return (await getPublishedProducts()).map((product) => ({ slug: product.slug }))
 }

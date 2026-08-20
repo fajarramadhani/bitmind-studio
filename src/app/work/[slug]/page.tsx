@@ -15,14 +15,10 @@ import { FadeIn } from "@/components/shared/FadeIn"
 import { siteConfig } from "@/config/site"
 import { projectKindLabels } from "@/lib/content/labels"
 
+export const dynamic = "force-dynamic"
+
 type ProjectPageProps = {
   params: Promise<{ slug: string }>
-}
-
-export async function generateStaticParams() {
-  return (await getPublishedProjects()).map((project) => ({
-    slug: project.slug,
-  }))
 }
 
 export async function generateMetadata({ params }: ProjectPageProps) {

@@ -15,6 +15,8 @@ import { FinalCTASection } from "@/components/sections/FinalCTASection"
 import { faqs } from "@/data/faqs"
 import { getPublishedProjects } from "@/lib/content"
 
+export const dynamic = "force-dynamic"
+
 export const metadata = {
   title: "Services",
   description:

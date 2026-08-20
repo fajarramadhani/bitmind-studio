@@ -14,6 +14,8 @@ import {
   getPublishedProjects,
 } from "@/lib/content"
 
+export const dynamic = "force-dynamic"
+
 export default async function Home() {
   const [projects, featuredProjects, featuredProducts] = await Promise.all([
     getPublishedProjects(),
