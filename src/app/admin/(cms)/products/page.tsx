@@ -1,21 +1,14 @@
 import Link from "next/link"
-import { archiveProductAction, deleteProductAction } from "@/app/admin/actions"
 import { AdminNotice } from "@/components/admin/AdminNotice"
+import { DestructiveActionForm } from "@/components/admin/DestructiveActionForm"
 import { getAdminProducts } from "@/lib/admin/queries"
 
-export default async function AdminProductsPage({
-  searchParams,
-}: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>
-}) {
-  const [products, query] = await Promise.all([
-    getAdminProducts(),
-    searchParams,
-  ])
+export default async function AdminProductsPage() {
+  const products = await getAdminProducts()
 
   return (
     <>
-      <AdminNotice searchParams={query} />
+      <AdminNotice />
       <div className="flex items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
@@ -57,16 +50,8 @@ export default async function AdminProductsPage({
                 <div className="flex flex-wrap items-end gap-3">
                   <Link href={`/admin/products/${product.id}/edit`} className="admin-button-secondary">Edit</Link>
                   <Link href={`/admin/preview/products/${product.id}`} target="_blank" className="admin-button-secondary">Preview</Link>
-                  <form action={archiveProductAction} className="flex items-end gap-2">
-                    <input type="hidden" name="id" value={product.id} />
-                    <label className="grid gap-1 text-xs text-muted-foreground">Type ARCHIVE<input required name="confirmation" className="admin-input h-9 w-24" /></label>
-                    <button className="admin-button-secondary">Archive</button>
-                  </form>
-                  <form action={deleteProductAction} className="flex items-end gap-2">
-                    <input type="hidden" name="id" value={product.id} />
-                    <label className="grid gap-1 text-xs text-muted-foreground">Type DELETE<input required name="confirmation" className="admin-input h-9 w-24" /></label>
-                    <button className="text-sm font-medium text-red-700">Delete</button>
-                  </form>
+                  <DestructiveActionForm action="archive-product" id={product.id} />
+                  <DestructiveActionForm action="delete-product" id={product.id} />
                 </div>
               </div>
             </article>

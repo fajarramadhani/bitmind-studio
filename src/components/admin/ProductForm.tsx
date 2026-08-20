@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { saveProductAction } from "@/app/admin/actions"
 import { SlugFields } from "@/components/admin/SlugFields"
+import { SubmitButton } from "@/components/admin/SubmitButton"
 import type { ProductRow } from "@/types/database"
 
 export function ProductForm({ product }: { product?: ProductRow }) {
@@ -25,7 +26,9 @@ export function ProductForm({ product }: { product?: ProductRow }) {
       <label className="grid gap-2 text-sm font-medium">Demo URL<input type="url" name="demo_url" defaultValue={product?.demo_url ?? ""} className="admin-input" /></label>
       <label className="grid gap-2 text-sm font-medium">Purchase URL<input type="url" name="purchase_url" defaultValue={product?.purchase_url ?? ""} className="admin-input" /></label>
       <div className="flex flex-wrap gap-3 border-t border-border pt-6">
-        <button className="admin-button">{product ? "Save Product" : "Create Product"}</button>
+        <SubmitButton pendingLabel={product ? "Saving..." : "Creating..."} statusAware>
+          {product ? "Save Product" : "Create Product"}
+        </SubmitButton>
         <Link href="/admin/products" className="admin-button-secondary">Cancel</Link>
       </div>
     </form>

@@ -18,6 +18,10 @@ function safeAdminPath(value: FormDataEntryValue | null) {
   return path.startsWith("/admin") && !path.startsWith("//") ? path : "/admin"
 }
 
+function withNotice(path: string, notice: string) {
+  return `${path}${path.includes("?") ? "&" : "?"}${notice}=1`
+}
+
 function revalidateContent(oldSlug?: string, newSlug?: string, type?: "project" | "product") {
   revalidatePath("/")
   revalidatePath("/work")
@@ -96,13 +100,13 @@ export async function loginAction(form: FormData) {
     await supabase.auth.signOut()
     redirect("/admin/login?error=forbidden")
   }
-  redirect(next)
+  redirect(withNotice(next, "logged-in"))
 }
 
 export async function logoutAction() {
   const supabase = await createClient()
   await supabase.auth.signOut()
-  redirect("/admin/login")
+  redirect("/admin/login?logged-out=1")
 }
 
 export async function saveProjectAction(form: FormData) {
@@ -150,7 +154,14 @@ export async function saveProjectAction(form: FormData) {
   }
 
   revalidateContent(oldSlug, values.slug, "project")
-  redirect(`/admin/projects/${result.data.id}/edit?saved=1`)
+  const notice =
+    values.publish_status === "published" &&
+    existing?.data?.publish_status !== "published"
+      ? "published"
+      : values.publish_status === "archived"
+        ? "archived"
+        : "saved"
+  redirect(`/admin/projects/${result.data.id}/edit?${notice}=1`)
 }
 
 export async function archiveProjectAction(form: FormData) {
@@ -232,7 +243,14 @@ export async function saveProductAction(form: FormData) {
     redirect(`/admin/products/${id ? `${id}/edit` : "new"}?error=${encodeURIComponent(message)}`)
   }
   revalidateContent(oldSlug, values.slug, "product")
-  redirect(`/admin/products/${result.data.id}/edit?saved=1`)
+  const notice =
+    values.publish_status === "published" &&
+    existing?.data?.publish_status !== "published"
+      ? "published"
+      : values.publish_status === "archived"
+        ? "archived"
+        : "saved"
+  redirect(`/admin/products/${result.data.id}/edit?${notice}=1`)
 }
 
 export async function archiveProductAction(form: FormData) {

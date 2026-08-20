@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { saveProjectAction } from "@/app/admin/actions"
 import { SlugFields } from "@/components/admin/SlugFields"
+import { SubmitButton } from "@/components/admin/SubmitButton"
 import type { ProjectRow } from "@/types/database"
 
 const textareaFields = [
@@ -55,7 +56,9 @@ export function ProjectForm({ project }: { project?: ProjectRow }) {
       </div>
 
       <div className="flex flex-wrap gap-3 border-t border-border pt-6">
-        <button className="admin-button">{project ? "Save Project" : "Create Project"}</button>
+        <SubmitButton pendingLabel={project ? "Saving..." : "Creating..."} statusAware>
+          {project ? "Save Project" : "Create Project"}
+        </SubmitButton>
         <Link href="/admin/projects" className="admin-button-secondary">Cancel</Link>
       </div>
     </form>

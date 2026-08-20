@@ -1,18 +1,14 @@
 import Link from "next/link"
-import { archiveProjectAction, deleteProjectAction } from "@/app/admin/actions"
 import { AdminNotice } from "@/components/admin/AdminNotice"
+import { DestructiveActionForm } from "@/components/admin/DestructiveActionForm"
 import { getAdminProjects } from "@/lib/admin/queries"
 
-export default async function AdminProjectsPage({
-  searchParams,
-}: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>
-}) {
-  const [projects, query] = await Promise.all([getAdminProjects(), searchParams])
+export default async function AdminProjectsPage() {
+  const projects = await getAdminProjects()
 
   return (
     <>
-      <AdminNotice searchParams={query} />
+      <AdminNotice />
       <div className="flex items-end justify-between gap-4">
         <div><p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Projects</p><h1 className="mt-2 text-3xl font-semibold">Manage Projects</h1></div>
         <Link href="/admin/projects/new" className="admin-button">+ New Project</Link>
@@ -25,8 +21,8 @@ export default async function AdminProjectsPage({
               <div className="flex flex-wrap items-end gap-3">
                 <Link href={`/admin/projects/${project.id}/edit`} className="admin-button-secondary">Edit</Link>
                 <Link href={`/admin/preview/projects/${project.id}`} target="_blank" className="admin-button-secondary">Preview</Link>
-                <form action={archiveProjectAction} className="flex items-end gap-2"><input type="hidden" name="id" value={project.id}/><label className="grid gap-1 text-xs text-muted-foreground">Type ARCHIVE<input required name="confirmation" className="admin-input h-9 w-24"/></label><button className="admin-button-secondary">Archive</button></form>
-                <form action={deleteProjectAction} className="flex items-end gap-2"><input type="hidden" name="id" value={project.id}/><label className="grid gap-1 text-xs text-muted-foreground">Type DELETE<input required name="confirmation" className="admin-input h-9 w-24"/></label><button className="text-sm font-medium text-red-700">Delete</button></form>
+                <DestructiveActionForm action="archive-project" id={project.id} />
+                <DestructiveActionForm action="delete-project" id={project.id} />
               </div>
             </div>
           </article>

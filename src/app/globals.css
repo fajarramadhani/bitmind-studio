@@ -131,3 +131,9 @@ img {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+
+.admin-button:disabled,
+.admin-button-secondary:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

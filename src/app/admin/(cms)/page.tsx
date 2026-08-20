@@ -1,10 +1,14 @@
 import Link from "next/link"
 import { getAdminProducts, getAdminProjects } from "@/lib/admin/queries"
+import { AdminNotice } from "@/components/admin/AdminNotice"
 
 export const metadata = { title: "CMS Overview", robots: { index: false, follow: false } }
 
 export default async function AdminDashboardPage() {
-  const [projects, products] = await Promise.all([getAdminProjects(), getAdminProducts()])
+  const [projects, products] = await Promise.all([
+    getAdminProjects(),
+    getAdminProducts(),
+  ])
   const metrics = [
     ["Total Projects", projects.length],
     ["Published Projects", projects.filter((item) => item.publish_status === "published").length],
@@ -16,6 +20,7 @@ export default async function AdminDashboardPage() {
 
   return (
     <>
+      <AdminNotice />
       <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
         <div><p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Overview</p><h1 className="mt-2 text-3xl font-semibold tracking-tight">Content Dashboard</h1></div>
         <div className="flex flex-wrap gap-3"><Link href="/admin/projects/new" className="admin-button">+ New Project</Link><Link href="/admin/products/new" className="admin-button-secondary">+ New Product</Link></div>
