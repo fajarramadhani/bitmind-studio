@@ -109,37 +109,39 @@ export function Navbar() {
 
           <div className="hidden items-center gap-8 md:flex">
             <ul className="flex items-center gap-7">
-                          {navigationItems.map((item) => (
-                            <li key={item.href}>
-                              <Link
-                                href={item.href}
-                                className={cn(
-                                  "relative text-sm font-medium transition-colors after:absolute after:-bottom-2 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform",
-                                  pathname === item.href
-                                    ? "text-accent after:scale-x-100"
-                                    : "text-muted-foreground hover:text-foreground hover:after:scale-x-100"
-                                )}
-                              >
-                                {item.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                        <ThemeToggle />
-                        <Button href="/contact" size="sm">
-                          Start a Project
-                        </Button>
-                      </div>
+              {navigationItems.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "relative text-sm font-medium transition-colors after:absolute after:-bottom-2 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform",
+                      pathname === item.href
+                        ? "text-accent after:scale-x-100"
+                        : "text-muted-foreground hover:text-foreground hover:after:scale-x-100"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Button href="/contact" size="sm">
+              Start a Project
+            </Button>
+          </div>
 
-          <button
-            className="flex h-10 w-10 items-center justify-center rounded-full text-foreground transition-colors hover:bg-muted md:hidden"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-            aria-expanded={isOpen}
-            aria-controls="mobile-navigation"
-          >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              className="flex h-10 w-10 items-center justify-center rounded-full text-foreground transition-colors hover:bg-muted md:hidden"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
+              aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
+            >
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </nav>
       </Container>
 
