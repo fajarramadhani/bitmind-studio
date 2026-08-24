@@ -84,3 +84,8 @@ export type NavigationItem = {
   label: string
   href: string
 }
+
+export type InquiryFormState = {
+  status: "idle" | "loading" | "success" | "error"
+  message: string
+}

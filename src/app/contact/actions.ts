@@ -2,13 +2,9 @@
 
 import { revalidatePath } from "next/cache"
 import { createClient } from "@/lib/supabase/server"
+import type { InquiryFormState } from "@/types"
 
-export type InquiryFormState = {
-  status: "idle" | "loading" | "success" | "error"
-  message: string
-}
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const EMAIL_RE = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/
 
 export async function submitInquiry(
   _prev: InquiryFormState,

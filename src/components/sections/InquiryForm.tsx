@@ -1,8 +1,7 @@
 "use client"
 
 import { useSearchParams } from "next/navigation"
-import { useRef, useState } from "react"
-import { useActionState } from "react"
+import { useRef, useState, useActionState } from "react"
 import {
   budgetOptions,
   projectTypeOptions,
@@ -11,6 +10,7 @@ import {
 } from "@/data/inquiry"
 import { Button } from "@/components/ui/Button"
 import { submitInquiry } from "@/app/contact/actions"
+import type { InquiryFormState } from "@/types"
 
 type InquiryFormValues = {
   name: string
@@ -22,11 +22,6 @@ type InquiryFormValues = {
   timeline: string
   description: string
   reference: string
-}
-
-type InquiryFormState = {
-  status: "idle" | "loading" | "success" | "error"
-  message: string
 }
 
 export function InquiryForm() {
