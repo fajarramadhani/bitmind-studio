@@ -1,4 +1,10 @@
--- Idempotent seed matching the existing static project and product content.
+-- Idempotent seed matching the current public product inventory and the
+-- retained migration/reference CMS records.
+--
+-- Products are kept in sync with src/data/products.ts.
+-- Projects intentionally retain legacy client records in Supabase seed data even
+-- though src/data/projects.ts stays empty and the public portfolio filters these
+-- slugs until ownership/contribution is verified.
 
 insert into public.projects (
   slug, title, project_kind, client, category, year, short_description, description,
@@ -51,12 +57,12 @@ insert into public.products (
   featured, sort_order, published_at
 )
 values
-  ('bitmind-website-starter', 'BITMIND Website Starter', 'Website Template',
-   'Production-ready Next.js starter for modern business websites.',
+  ('bitmind-moments', 'BITMIND Moments', 'Digital Experience',
+   'Beautiful digital experiences for life''s meaningful moments. A privacy-safe umbrella for weddings, birthdays, anniversaries, and celebrations.',
    'coming-soon', 'published', true, 0, timestamptz '2026-01-01 00:00:00+00'),
-  ('landing-page-kit', 'Landing Page Kit', 'UI Kit',
-   'Complete UI kit for building high-converting landing pages.',
-   'coming-soon', 'published', false, 1, timestamptz '2026-01-01 00:00:00+00')
+  ('moneara', 'Moneara', 'Financial Product',
+   'A BITMIND-owned personal finance product direction designed for calmer money management and clearer daily decisions.',
+   'coming-soon', 'published', true, 1, timestamptz '2026-01-01 00:00:00+00')
 on conflict (slug) do update set
   title = excluded.title, category = excluded.category,
   short_description = excluded.short_description,

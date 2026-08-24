@@ -1,10 +1,9 @@
 export const projectTypeOptions = [
-  "Company Profile Website",
-  "Landing Page",
-  "Website Redesign",
-  "Web Application",
+  "Website Design & Development",
   "UI/UX Design",
-  "Digital Product",
+  "Digital Experiences",
+  "Business Systems",
+  "Custom Digital Products",
   "Other",
 ]
 
@@ -25,21 +24,19 @@ export const timelineOptions = [
 ]
 
 export const projectTypeToServiceSlug: Record<string, string> = {
-  "Company Profile Website": "company-profile-website",
-  "Landing Page": "landing-page",
-  "Website Redesign": "website-redesign",
-  "Web Application": "web-application",
+  "Website Design & Development": "website-design-development",
   "UI/UX Design": "ui-ux-design",
-  "Digital Product": "digital-product",
-  "Other": "other",
+  "Digital Experiences": "digital-experiences",
+  "Business Systems": "business-systems",
+  "Custom Digital Products": "custom-digital-products",
+  Other: "other",
 }
 
 export const serviceSlugToProjectType: Record<string, string> = {
-  "company-profile-website": "Company Profile Website",
-  "landing-page": "Landing Page",
-  "website-redesign": "Website Redesign",
-  "web-application": "Web Application",
+  "website-design-development": "Website Design & Development",
   "ui-ux-design": "UI/UX Design",
-  "digital-product": "Digital Product",
-  "other": "Other",
+  "digital-experiences": "Digital Experiences",
+  "business-systems": "Business Systems",
+  "custom-digital-products": "Custom Digital Products",
+  other: "Other",
 }

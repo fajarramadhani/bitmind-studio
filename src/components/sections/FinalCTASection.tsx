@@ -8,28 +8,25 @@ export function FinalCTASection() {
     <Section className="py-20 md:py-24 lg:py-28">
       <Container>
         <FadeIn>
-          <div className="rounded-2xl bg-foreground px-7 py-14 text-background md:px-12 md:py-16 lg:px-16">
-            <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div className="relative overflow-hidden rounded-[2rem] bg-surface-dark px-7 py-14 text-background ring-1 ring-white/[0.08] md:px-12 md:py-16 lg:px-16">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(40rem_30rem_at_80%_80%,rgba(0,101,255,0.15),transparent_60%)]" />
+            <div className="relative grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
               <div className="flex max-w-3xl flex-col gap-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-background/60">
-                Start a Project
-              </p>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                  Start a Project
+                </p>
 
-              <h2 className="text-4xl font-semibold leading-tight tracking-tight md:text-5xl lg:text-6xl">
-                Have an idea?
-                <br />
-                Let&apos;s build it.
-              </h2>
+                <h2 className="text-[clamp(2.5rem,5.5vw,4.5rem)] font-semibold leading-[1.05] tracking-[-0.025em] md:leading-[1.1]">
+                  Have something worth building?
+                </h2>
 
-              <p className="max-w-xl text-lg leading-relaxed text-background/80">
-                Whether you&apos;re building a new website, redesigning an existing
-                one or exploring a digital product, let&apos;s talk.
-              </p>
-
+                <p className="max-w-xl text-[clamp(1.1rem,1.5vw,1.35rem)] leading-relaxed text-background/80">
+                  Let&apos;s turn it into a digital experience that works.
+                </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
                 <Button
-                  href="/work"
+                  href="/contact"
                   variant="secondary"
                   size="lg"
                   className="border-transparent bg-background text-foreground hover:bg-background/90"
@@ -37,7 +34,7 @@ export function FinalCTASection() {
                   Start a Project
                 </Button>
                 <Button
-                  href="/contact"
+                  href="/work"
                   variant="ghost"
                   size="lg"
                   className="text-background hover:bg-background/10"
@@ -45,7 +42,6 @@ export function FinalCTASection() {
                   View Our Work
                 </Button>
               </div>
-
             </div>
           </div>
         </FadeIn>

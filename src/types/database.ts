@@ -115,7 +115,7 @@ export type Database = {
           id: string
           email?: string | null
           display_name?: string | null
-          role: "admin"
+          role?: "admin"
         },
         { email?: string | null; display_name?: string | null; role?: "admin" }
       >
@@ -123,6 +123,39 @@ export type Database = {
       project_media: Table<ProjectMediaRow, Partial<ProjectMediaRow> & Pick<ProjectMediaRow, "project_id" | "storage_path" | "public_url" | "alt_text">, Partial<ProjectMediaRow>>
       products: Table<ProductRow, Partial<ProductRow> & Pick<ProductRow, "slug" | "title" | "category" | "short_description">, Partial<ProductRow>>
       product_media: Table<ProductMediaRow, Partial<ProductMediaRow> & Pick<ProductMediaRow, "product_id" | "storage_path" | "public_url" | "alt_text">, Partial<ProductMediaRow>>
+      inquiries: Table<
+        {
+          id: string
+          name: string
+          email: string
+          whatsapp: string | null
+          company: string | null
+          project_type: string
+          budget: string
+          timeline: string
+          description: string
+          reference: string | null
+          status: "new" | "contacted" | "qualified" | "archived"
+          created_at: string
+          updated_at: string
+        },
+        {
+          id?: string
+          name: string
+          email: string
+          whatsapp?: string | null
+          company?: string | null
+          project_type: string
+          budget: string
+          timeline: string
+          description: string
+          reference?: string | null
+          status?: "new" | "contacted" | "qualified" | "archived"
+        },
+        {
+          status?: "new" | "contacted" | "qualified" | "archived"
+        }
+      >
     }
     Views: Record<string, never>
     Functions: {

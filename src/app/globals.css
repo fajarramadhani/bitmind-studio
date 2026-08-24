@@ -9,11 +9,35 @@
   --background: #f6f6f3;
   --foreground: #111111;
   --surface: #ffffff;
+  --surface-soft: #ededeb;
+  --surface-dark: #111111;
+  --surface-dark-elevated: #1e1e1e;
   --muted: #f6f6f3;
   --muted-foreground: #707070;
   --border: #e4e4e1;
+  --border-dark: #2a2a29;
   --accent: var(--brand-primary-dark);
   --accent-foreground: #ffffff;
+}
+
+.dark {
+  --brand-primary: #3388ff;
+  --brand-primary-hover: #1a7aff;
+  --brand-primary-soft: #0d1f3d;
+  --brand-primary-dark: #4d99ff;
+  --brand-primary-foreground: #000000;
+  --background: #0e0e0e;
+  --foreground: #f0f0f0;
+  --surface: #1a1a1a;
+  --surface-soft: #242424;
+  --surface-dark: #0e0e0e;
+  --surface-dark-elevated: #1a1a1a;
+  --muted: #1a1a1a;
+  --muted-foreground: #a0a0a0;
+  --border: #2a2a2a;
+  --border-dark: #444444;
+  --accent: var(--brand-primary-dark);
+  --accent-foreground: #000000;
 }
 
 @theme inline {
@@ -25,9 +49,13 @@
   --color-brand-primary-foreground: var(--brand-primary-foreground);
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
+  --color-surface-soft: var(--surface-soft);
+  --color-surface-dark: var(--surface-dark);
+  --color-surface-dark-elevated: var(--surface-dark-elevated);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+  --color-border-dark: var(--border-dark);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --font-sans: var(--font-geist-sans);
@@ -54,6 +82,14 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  /* Override Framer Motion's initial opacity:0 so content stays visible
+     when the user has requested reduced motion. The JS animation
+     lifecycle still runs but completes instantly. */
+  [style*="opacity: 0"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 body {
@@ -62,6 +98,14 @@ body {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+::selection {
+  background: rgba(0, 101, 255, 0.16);
+  color: var(--foreground);
+}
+
+a {
+  text-decoration: none;
 }
 
 body:has(.admin-shell) > header,

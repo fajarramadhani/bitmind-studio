@@ -1,7 +1,8 @@
 "use client"
 
 import { useSearchParams } from "next/navigation"
-import { useState } from "react"
+import { useRef, useState } from "react"
+import { useActionState } from "react"
 import {
   budgetOptions,
   projectTypeOptions,
@@ -9,8 +10,9 @@ import {
   timelineOptions,
 } from "@/data/inquiry"
 import { Button } from "@/components/ui/Button"
+import { submitInquiry } from "@/app/contact/actions"
 
-type FormData = {
+type InquiryFormValues = {
   name: string
   email: string
   whatsapp: string
@@ -22,6 +24,11 @@ type FormData = {
   reference: string
 }
 
+type InquiryFormState = {
+  status: "idle" | "loading" | "success" | "error"
+  message: string
+}
+
 export function InquiryForm() {
   const searchParams = useSearchParams()
   const service = searchParams.get("service")
@@ -30,7 +37,7 @@ export function InquiryForm() {
       ? serviceSlugToProjectType[service]
       : ""
 
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<InquiryFormValues>({
     name: "",
     email: "",
     whatsapp: "",
@@ -42,21 +49,30 @@ export function InquiryForm() {
     reference: "",
   })
 
+  const [state, formAction, isPending] = useActionState<
+    InquiryFormState,
+    FormData
+  >(submitInquiry, { status: "idle", message: "" })
+
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-  }
+  const formRef = useRef<HTMLFormElement>(null)
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-6">
+    <form
+      ref={formRef}
+      action={formAction}
+      className="grid gap-6"
+    >
+      {/* Hidden field for server action */}
+      <input type="hidden" name="service" value={service || ""} />
       {/* Name & Email */}
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="grid min-w-0 gap-2">
@@ -225,14 +241,26 @@ export function InquiryForm() {
         <Button
           type="submit"
           size="lg"
-          disabled
+          disabled={isPending}
           aria-describedby="inquiry-status"
         >
-          Tell Us About Your Project
+          {isPending ? "Submitting..." : "Tell Us About Your Project"}
         </Button>
-        <p id="inquiry-status" role="status" className="text-sm text-muted-foreground">
-          Online submission is not active yet. The form will be connected to the
-          inquiry backend in the integration phase.
+        <p
+          id="inquiry-status"
+          role="status"
+          aria-live="polite"
+          className={
+            state.status === "success"
+              ? "text-sm text-green-600 dark:text-green-400"
+              : state.status === "error"
+                ? "text-sm text-red-600 dark:text-red-400"
+                : "text-sm text-muted-foreground"
+          }
+        >
+          {state.status === "idle"
+            ? "We'll respond within 1-2 business days."
+            : state.message}
         </p>
       </div>
     </form>

@@ -1,68 +1,84 @@
-import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Container } from "@/components/layout/Container"
 import { Section } from "@/components/layout/Section"
+import { Button } from "@/components/ui/Button"
 import { FadeIn, Stagger, StaggerItem } from "@/components/shared/FadeIn"
-import { servicePricing } from "@/data/pricing"
-import { services } from "@/data/services"
+
+const investmentFactors = [
+  "Scope",
+  "Complexity",
+  "Content readiness",
+  "Interactions",
+  "Integrations",
+  "Timeline",
+] as const
 
 export function ServicePricing() {
   return (
-    <Section className="border-t border-border bg-foreground text-background">
+    <Section className="border-t border-border-dark bg-surface-dark text-background">
       <Container>
-        <FadeIn>
-          <div className="grid gap-8 lg:grid-cols-2 lg:items-end">
-            <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-                Pricing Approach
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-20">
+          <FadeIn>
+            <div className="max-w-xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                Investment & Scope
               </p>
-              <h2 className="max-w-xl text-3xl font-semibold tracking-tight md:text-4xl">
-                Professional scope, flexible quotation.
+              <h2 className="mt-4 text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-[1.06] tracking-[-0.02em] text-background">
+                Every project has a different shape.
               </h2>
+              <p className="mt-4 text-[clamp(1rem,1.25vw,1.12rem)] leading-relaxed text-background/75">
+                Rather than forcing every project into a fixed package, investment
+                is shaped by what needs to be designed, built, refined, and
+                delivered.
+              </p>
             </div>
-            <p className="max-w-xl text-lg leading-relaxed text-background/70 lg:justify-self-end">
-              Every project is different. Final pricing depends on scope, content,
-              features and timeline.
-            </p>
-          </div>
-        </FadeIn>
+          </FadeIn>
 
-        <Stagger className="mt-14 divide-y divide-background/10 border-y border-background/10">
-          {servicePricing.map((pricing) => {
-            const service = services.find(
-              (item) => item.slug === pricing.serviceSlug
-            )
+          <div className="flex flex-col gap-8">
+            <FadeIn delay={0.08}>
+              <div className="rounded-[1.5rem] border border-background/10 bg-background/5 p-6 md:p-8">
+                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-accent">
+                  What shapes investment
+                </p>
+                <Stagger className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {investmentFactors.map((item) => (
+                    <StaggerItem
+                      key={item}
+                      className="flex items-start gap-3 rounded-2xl border border-background/10 bg-background/5 px-4 py-4"
+                    >
+                      <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                      <span className="text-sm leading-relaxed text-background/85">
+                        {item}
+                      </span>
+                    </StaggerItem>
+                  ))}
+                </Stagger>
+              </div>
+            </FadeIn>
 
-            if (!service) return null
-
-            return (
-              <StaggerItem key={pricing.serviceSlug}>
-                <div className="grid gap-5 py-7 md:grid-cols-[1fr_1fr_auto] md:items-center md:gap-8">
-                  <h3 className="text-lg font-medium text-background">
-                    {service.title}
-                  </h3>
-                  <div>
-                    <p className="font-medium text-background">
-                      {pricing.priceLabel ?? "Custom quotation"}
-                    </p>
-                    {pricing.note ? (
-                      <p className="mt-1 text-sm leading-relaxed text-background/55">
-                        {pricing.note}
-                      </p>
-                    ) : null}
-                  </div>
-                  <Link
-                    href={`/contact?service=${service.slug}`}
-                    className="group inline-flex items-center gap-2 text-sm font-medium text-background transition-colors hover:text-accent"
-                  >
-                    Request a Quote
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
+            <FadeIn delay={0.12}>
+              <div className="flex flex-col gap-4 rounded-[1.5rem] border border-background/10 bg-background/5 p-6 md:flex-row md:items-end md:justify-between md:p-8">
+                <div className="max-w-xl">
+                  <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-accent">
+                    Commercial framing
+                  </p>
+                  <p className="mt-3 text-[0.98rem] leading-relaxed text-background/80">
+                    The clearest next step is to describe what you are building.
+                    Once the scope is clearer, BITMIND can advise on the most
+                    suitable service direction and prepare a realistic quotation.
+                  </p>
                 </div>
-              </StaggerItem>
-            )
-          })}
-        </Stagger>
+                <Button
+                  href="/contact"
+                  size="lg"
+                  className="bg-background text-foreground hover:bg-background/90"
+                >
+                  Tell Us What You&apos;re Building
+                </Button>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
       </Container>
     </Section>
   )

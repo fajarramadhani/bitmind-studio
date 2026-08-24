@@ -18,7 +18,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
       <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
         {service.shortDescription}
       </p>
-      <div className="mt-auto flex items-center gap-1 pt-2 text-sm font-medium text-accent opacity-0 transition-opacity group-hover:opacity-100">
+      <div className="mt-auto flex items-center gap-1 pt-2 text-sm font-medium text-accent opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100">
         Learn more
         <ArrowRight className="h-4 w-4" />
       </div>

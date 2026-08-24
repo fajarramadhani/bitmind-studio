@@ -74,8 +74,24 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                var stored = localStorage.getItem('theme');
+                if (stored === 'dark' || (!stored && prefersDark)) {
+                  document.documentElement.classList.add('dark');
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className="flex min-h-screen flex-col">
         <Navbar />
         <main className="flex-grow">{children}</main>

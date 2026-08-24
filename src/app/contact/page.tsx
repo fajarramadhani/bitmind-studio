@@ -7,7 +7,8 @@ import { siteConfig } from "@/config/site"
 
 export const metadata = {
   title: "Start a Project",
-  description: "Tell BITMIND STUDIO about your website or digital product project.",
+  description:
+    "Tell BITMIND STUDIO about your website, interface, digital experience, business system, or custom digital product project.",
 }
 
 export default function ContactPage() {
@@ -35,7 +36,7 @@ export default function ContactPage() {
                 </Link>
                 {siteConfig.whatsapp ? (
                   <a
-                    href={siteConfig.whatsapp}
+                    href={`https://wa.me/${siteConfig.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-7 py-3 text-base font-medium text-accent-foreground transition-colors hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"

@@ -16,7 +16,7 @@ function FAQItem({ item, index }: { item: FAQ; index: number }) {
       <button
         id={`faq-heading-${index}`}
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between gap-4 py-6 text-left"
+        className="flex w-full items-center justify-between gap-4 rounded-lg py-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-background"
         aria-expanded={isOpen}
         aria-controls={`faq-${index}`}
       >

@@ -2,74 +2,78 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Container } from "@/components/layout/Container"
 import { Section } from "@/components/layout/Section"
+import { SectionHeading } from "@/components/layout/SectionHeading"
 import { services } from "@/data/services"
 import { FadeIn, Stagger, StaggerItem } from "@/components/shared/FadeIn"
+import { Badge } from "@/components/ui/Badge"
 import type { Service } from "@/types"
 
 function ServiceBlock({ service, index }: { service: Service; index: number }) {
   return (
     <article
       id={service.slug}
-      className="group scroll-mt-28 border-b border-border py-12 transition-colors first:pt-0 last:border-b-0 last:pb-0 hover:bg-muted/30"
+      className="group scroll-mt-28 py-12"
     >
-      <div className="flex flex-col gap-8 lg:grid lg:grid-cols-12 lg:gap-12">
-        {/* Left: Number + Title */}
-        <div className="lg:col-span-4">
-          <div className="flex items-baseline gap-4">
-            <span className="text-sm font-semibold text-accent">0{index + 1}</span>
-            <h3 className="text-xl font-semibold tracking-tight text-foreground">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-14">
+        <div className="flex flex-col gap-5">
+          <span className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-accent">
+            0{index + 1}
+          </span>
+          <div>
+            <h3 className="text-[clamp(1.7rem,2.7vw,2.4rem)] font-semibold leading-[1.06] tracking-[-0.02em] text-foreground">
               {service.title}
             </h3>
+            {service.valueStatement ? (
+              <p className="mt-4 max-w-md text-[1rem] leading-relaxed text-muted-foreground">
+                {service.valueStatement}
+              </p>
+            ) : null}
           </div>
         </div>
 
-        {/* Right: Description + Details */}
-        <div className="lg:col-span-8">
-          <p className="text-base leading-relaxed text-muted-foreground mb-6">
+        <div className="flex flex-col gap-8">
+          <p className="max-w-2xl text-[1rem] leading-relaxed text-muted-foreground md:text-[1.04rem]">
             {service.description}
           </p>
 
-          {service.idealFor && service.idealFor.length > 0 && (
-            <div className="mb-6">
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground mb-2">
-                Best For
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {service.idealFor.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full bg-surface border border-border px-3 py-1 text-xs text-muted-foreground"
-                  >
+          {service.subOffers && service.subOffers.length > 0 ? (
+            <div>
+              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                Typical Scope
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2.5">
+                {service.subOffers.map((item) => (
+                  <Badge key={item} variant="outline" className="px-3 py-1.5">
                     {item}
-                  </span>
+                  </Badge>
                 ))}
               </div>
             </div>
-          )}
+          ) : null}
 
-          {service.deliverables && service.deliverables.length > 0 && (
-            <div className="mb-6">
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground mb-2">
-                Deliverables
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {service.deliverables.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-md bg-muted px-3 py-1 text-xs text-muted-foreground"
-                  >
-                    {item}
-                  </span>
+          {service.idealFor && service.idealFor.length > 0 ? (
+            <div>
+              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                Typical Use Cases
+              </p>
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                {service.idealFor.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent" />
+                    <span className="text-[0.98rem] leading-relaxed text-foreground">
+                      {item}
+                    </span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
-          )}
+          ) : null}
 
           <Link
             href={`/contact?service=${service.slug}`}
-            className="group/link inline-flex items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-accent/80"
+            className="group/link inline-flex w-fit items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-accent/80"
           >
-            Discuss This Service
+            {service.ctaLabel ?? "Start a Project"}
             <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
           </Link>
         </div>
@@ -80,30 +84,27 @@ function ServiceBlock({ service, index }: { service: Service; index: number }) {
 
 export function ServiceList() {
   return (
-    <Section>
+    <Section id="capabilities" className="border-t border-border">
       <Container>
-        <FadeIn>
-          <div className="mb-12 md:mb-16">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-4">
-              What We Do
-            </p>
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl mb-4">
-              Core Services
-            </h2>
-            <p className="max-w-2xl text-lg text-muted-foreground">
-              Each service is designed around real business needs, not just visual
-              templates.
-            </p>
-          </div>
-        </FadeIn>
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-20">
+          <FadeIn>
+            <div className="flex flex-col gap-8">
+              <SectionHeading
+                eyebrow="Core Capabilities"
+                title="Five focused service pillars, shaped for modern digital needs."
+                description="The service architecture is intentionally focused so it is easier to understand what BITMIND can help design and build."
+              />
+            </div>
+          </FadeIn>
 
-        <Stagger className="flex flex-col">
-          {services.map((service, i) => (
-            <StaggerItem key={service.slug}>
-              <ServiceBlock service={service} index={i} />
-            </StaggerItem>
-          ))}
-        </Stagger>
+          <Stagger className="flex flex-col divide-y divide-border" staggerDelay={0.08}>
+            {services.map((service, i) => (
+              <StaggerItem key={service.slug}>
+                <ServiceBlock service={service} index={i} />
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
       </Container>
     </Section>
   )

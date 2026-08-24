@@ -4,10 +4,13 @@ import { Container } from "@/components/layout/Container"
 import { Section } from "@/components/layout/Section"
 import { FadeIn, Stagger, StaggerItem } from "@/components/shared/FadeIn"
 import { ProjectCard } from "@/components/ui/ProjectCard"
+import { getPublicPortfolioProjects } from "@/lib/project-portfolio"
 import type { Project } from "@/types"
 
 export function RelatedWorkSection({ projects }: { projects: Project[] }) {
-  if (projects.length === 0) return null
+  const publicProjects = getPublicPortfolioProjects(projects)
+
+  if (publicProjects.length === 0) return null
 
   return (
     <Section className="border-t border-border">
@@ -32,7 +35,7 @@ export function RelatedWorkSection({ projects }: { projects: Project[] }) {
           </div>
         </FadeIn>
         <Stagger className="mt-12 grid gap-10 md:grid-cols-2">
-          {projects.slice(0, 2).map((project) => (
+          {publicProjects.slice(0, 2).map((project) => (
             <StaggerItem key={project.slug}>
               <ProjectCard project={project} />
             </StaggerItem>

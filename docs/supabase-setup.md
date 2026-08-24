@@ -48,7 +48,7 @@ on conflict (id) do update set
   role = excluded.role;
 ```
 
-The seed upserts by slug and preserves `ardana-perkasa-group`, `prada-badminton-club`, `bitmind-website-starter`, and `landing-page-kit`. It does not delete other content or media.
+The seed upserts by slug and preserves `ardana-perkasa-group`, `prada-badminton-club`, `bitmind-moments`, and `moneara`. It does not delete other content or media. The product seed inventory matches `src/data/products.ts`.
 
 There is no `/admin/register` route. Additional administrators must be created
 intentionally through Supabase Auth and inserted into `profiles` by trusted admin

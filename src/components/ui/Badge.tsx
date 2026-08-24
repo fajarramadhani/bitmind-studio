@@ -7,9 +7,9 @@ type BadgeProps = {
 }
 
 const variants = {
-  default: "bg-muted text-muted-foreground",
+  default: "bg-surface-soft text-muted-foreground",
   accent: "bg-accent/10 text-accent",
-  outline: "border border-border text-muted-foreground",
+  outline: "border border-border bg-transparent text-muted-foreground",
 } as const
 
 export function Badge({
@@ -20,7 +20,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full px-3 py-1 text-xs font-medium",
+        "inline-flex items-center rounded-full px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.14em]",
         variants[variant],
         className
       )}

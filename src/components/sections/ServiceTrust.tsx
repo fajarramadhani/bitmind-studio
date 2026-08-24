@@ -1,77 +1,59 @@
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 import { Container } from "@/components/layout/Container"
 import { Section } from "@/components/layout/Section"
-import { FadeIn, Stagger, StaggerItem } from "@/components/shared/FadeIn"
+import { FadeIn } from "@/components/shared/FadeIn"
 
-const projectTypes = [
-  "Corporate Website",
-  "Landing Page",
-  "Business Website",
-  "Portfolio Website",
-  "Campaign Website",
-  "Internal Dashboard",
-  "Custom Web Tool",
-  "Website Redesign",
-]
-
-const reasons = [
-  ["Direct Collaboration", "Communication directly with the person building the project."],
-  ["Design + Development", "Visual and technical decisions are handled together."],
-  ["Responsive by Default", "Designed for mobile, tablet and desktop."],
-  ["Clear Process", "Defined project stages from discovery to launch."],
+const bridgeItems = [
+  {
+    eyebrow: "Digital Experiences",
+    title: "Looking for a celebration or personal-event experience?",
+    description:
+      "BITMIND Moments is the guided product direction for weddings, birthdays, anniversaries, and other meaningful occasions that need a more expressive digital presence.",
+    href: "/moments",
+    cta: "Explore BITMIND Moments",
+  },
+  {
+    eyebrow: "Custom Digital Products",
+    title: "Need a clearer view of BITMIND-owned product work?",
+    description:
+      "Products remain separate from Services. Explore the BITMIND product collection to see what the studio is already shaping, productizing, or positioning directly.",
+    href: "/products",
+    cta: "Explore BITMIND Products",
+  },
 ] as const
 
-export function ProjectTypesSection() {
-  return (
-    <Section className="border-t border-border">
-      <Container>
-        <FadeIn>
-          <p className="mb-10 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-            Project Types
-          </p>
-        </FadeIn>
-        <Stagger className="grid border-l border-t border-border sm:grid-cols-2 lg:grid-cols-4">
-          {projectTypes.map((type) => (
-            <StaggerItem key={type}>
-              <div className="flex min-h-28 items-end border-b border-r border-border p-5 text-lg font-medium text-foreground transition-colors hover:bg-surface">
-                {type}
-              </div>
-            </StaggerItem>
-          ))}
-        </Stagger>
-      </Container>
-    </Section>
-  )
-}
-
-export function WhyWorkWithBitmind() {
+export function ServiceBridgeSection() {
   return (
     <Section className="border-t border-border bg-surface">
       <Container>
-        <FadeIn>
-          <div className="mb-14">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-              Why BITMIND
-            </p>
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-              Focused collaboration, without unnecessary layers.
-            </h2>
-          </div>
-        </FadeIn>
-        <Stagger className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {reasons.map(([title, description], index) => (
-            <StaggerItem key={title}>
-              <span className="text-3xl font-light text-accent/70">
-                0{index + 1}
-              </span>
-              <h3 className="mt-6 text-lg font-semibold text-foreground">
-                {title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {description}
-              </p>
-            </StaggerItem>
+        <div className="grid gap-6 lg:grid-cols-2">
+          {bridgeItems.map((item, index) => (
+            <FadeIn key={item.title} delay={index * 0.08}>
+              <div className="flex h-full flex-col justify-between rounded-[1.5rem] border border-border/70 bg-background px-6 py-8 md:px-7 md:py-9">
+                <div>
+                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-accent">
+                    {item.eyebrow}
+                  </p>
+                  <h2 className="mt-4 text-[clamp(1.5rem,2.4vw,2rem)] font-semibold leading-[1.08] tracking-[-0.02em] text-foreground">
+                    {item.title}
+                  </h2>
+                  <p className="mt-4 text-[0.98rem] leading-relaxed text-muted-foreground">
+                    {item.description}
+                  </p>
+                </div>
+
+                <Link
+                  href={item.href}
+                  className="group mt-8 inline-flex w-fit items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-accent"
+                >
+                  {item.cta}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
+            </FadeIn>
           ))}
-        </Stagger>
+        </div>
       </Container>
     </Section>
   )

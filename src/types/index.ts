@@ -48,8 +48,11 @@ export type Service = {
   title: string
   shortDescription: string
   description?: string
+  valueStatement?: string
+  subOffers?: string[]
   idealFor?: string[]
   deliverables?: string[]
+  ctaLabel?: string
   featured?: boolean
 }
 

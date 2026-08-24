@@ -13,20 +13,19 @@ export function ServiceHero() {
               Services
             </p>
             <h1 className="text-[clamp(2.6rem,7.5vw,5.5rem)] font-semibold leading-[0.93] tracking-[-0.02em] text-foreground">
-              Websites designed to make businesses look more credible and work
-              better online.
+              Digital solutions, thoughtfully designed and built.
             </h1>
-            <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              From company profiles to custom web applications, BITMIND STUDIO
-              combines design and development to build digital experiences that are
-              clear, responsive and ready to use.
+            <p className="max-w-2xl text-[clamp(1.05rem,1.45vw,1.25rem)] leading-relaxed text-muted-foreground">
+              BITMIND works across websites, interfaces, interactive experiences,
+              internal systems, and custom digital products with a focused,
+              carefully crafted approach to design and implementation.
             </p>
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-col gap-3 min-[390px]:flex-row min-[390px]:flex-wrap">
               <Button href="/contact" size="lg">
                 Start a Project
               </Button>
-              <Button href="/work" variant="secondary" size="lg">
-                View Our Work
+              <Button href="#capabilities" variant="secondary" size="lg">
+                Explore Services
               </Button>
             </div>
           </div>

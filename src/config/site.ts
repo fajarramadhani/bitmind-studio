@@ -2,8 +2,8 @@ export const siteConfig = {
   name: "BITMIND STUDIO",
   description: "Web & Digital Product Studio",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://bitmindstudio.web.id",
-  email: "",
-  whatsapp: "",
+  email: "hello@bitmindstudio.web.id",
+  whatsapp: "6281234567890",
   brand: {
     name: "BITMIND STUDIO",
     shortName: "BITMIND",
@@ -13,8 +13,8 @@ export const siteConfig = {
     primaryColor: "#0065FF",
   },
   social: {
-    instagram: "",
-    linkedin: "",
-    github: "",
+    instagram: "https://instagram.com/bitmindstudio",
+    linkedin: "https://linkedin.com/company/bitmindstudio",
+    github: "https://github.com/bitmindstudio",
   },
 }

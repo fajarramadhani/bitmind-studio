@@ -5,6 +5,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { motion, useReducedMotion } from "framer-motion"
 import { Container } from "@/components/layout/Container"
+import { MOTION } from "@/components/shared/FadeIn"
 import { Button } from "@/components/ui/Button"
 import { BrowserFrame, DeviceFrame } from "@/components/ui/BrowserFrame"
 import type { Project } from "@/types"
@@ -17,11 +18,12 @@ export function HeroSection({ project }: { project: Project | null }) {
   const initial = reduceMotion ? false : { opacity: 0, y: 22 }
   const transition = {
     duration: reduceMotion ? 0 : 0.65,
-    ease: [0.21, 0.47, 0.32, 0.98] as [number, number, number, number],
+    ease: MOTION.ease,
   }
 
   return (
-    <section className="border-b border-border bg-background">
+    <section className="relative overflow-hidden border-b border-border bg-background">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60rem_40rem_at_75%_-10%,rgba(0,101,255,0.06),transparent_60%)]" />
       <Container>
         <div className="grid min-h-[calc(100svh-72px)] min-w-0 content-center gap-12 py-12 md:py-16 xl:grid-cols-12 xl:items-center xl:gap-12 xl:py-12">
           <motion.div
@@ -36,28 +38,28 @@ export function HeroSection({ project }: { project: Project | null }) {
 
             <h1 className="text-[clamp(2.6rem,8.7vw,4.5rem)] font-semibold leading-[0.94] tracking-[-0.035em] text-foreground sm:text-[clamp(3.4rem,7vw,5rem)] xl:text-[clamp(3.8rem,5vw,5.75rem)]">
               <span className="block xl:whitespace-nowrap">We design and build</span>
-              <span className="block text-[#6A6A6A] xl:whitespace-nowrap">
+              <span className="block text-muted-foreground xl:whitespace-nowrap">
                 digital experiences
               </span>
-              <span className="block">that work.</span>
+              <span className="block">that matter.</span>
             </h1>
 
-            <p className="max-w-[38rem] text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Websites and digital products crafted to help modern businesses look
-              better, work smarter, and move forward.
+            <p className="max-w-[38rem] text-balance text-base leading-relaxed text-muted-foreground sm:text-lg">
+              Websites, digital products, business systems, and experiences for
+              brands, businesses, and people.
             </p>
 
             <div className="flex flex-col gap-3 min-[390px]:flex-row min-[390px]:flex-wrap">
-              <Button href="/contact" size="lg" className="w-full min-[390px]:w-auto">
-                Start a Project
+              <Button href="/work" size="lg" className="w-full min-[390px]:w-auto">
+                Explore Work
               </Button>
               <Button
-                href="/work"
+                href="/contact"
                 variant="secondary"
                 size="lg"
                 className="w-full min-[390px]:w-auto"
               >
-                View Our Work
+                Start a Project
               </Button>
             </div>
 
