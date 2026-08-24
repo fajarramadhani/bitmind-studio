@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Navbar } from "@/components/navigation/Navbar"
 import { Footer } from "@/components/layout/Footer"
+import { ThemeProvider } from "@/components/theme/ThemeProvider"
 import { siteConfig } from "@/config/site"
 import "./globals.css"
 
@@ -77,25 +78,12 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                var stored = localStorage.getItem('theme');
-                if (stored === 'dark' || (!stored && prefersDark)) {
-                  document.documentElement.classList.add('dark');
-                }
-              })();
-            `,
-          }}
-        />
-      </head>
       <body className="flex min-h-screen flex-col">
-        <Navbar />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+        <ThemeProvider>
+          <Navbar />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   )
