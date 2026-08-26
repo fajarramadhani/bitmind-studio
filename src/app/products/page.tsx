@@ -112,7 +112,7 @@ export default async function ProductsPage() {
       </Section>
 
       {moments ? (
-        <Section className="border-t border-border-dark bg-surface-dark py-20 text-background md:py-24 lg:py-28">
+        <Section className="border-t border-white/10 bg-surface-dark py-20 text-white md:py-24 lg:py-28">
           <Container>
             <div className="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-center lg:gap-16">
               <FadeIn>
@@ -122,31 +122,31 @@ export default async function ProductsPage() {
                       Featured Product
                     </span>
                     {momentsStatus ? (
-                      <span className="rounded-full bg-background/10 px-3 py-1 text-xs font-medium text-background/80">
+                      <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/80">
                         {momentsStatus.label}
                       </span>
                     ) : null}
                   </div>
 
-                  <h2 className="text-[clamp(2.5rem,5.5vw,4.5rem)] font-semibold leading-[1.05] tracking-[-0.025em] text-background">
+                  <h2 className="text-[clamp(2.5rem,5.5vw,4.5rem)] font-semibold leading-[1.05] tracking-[-0.025em] text-white">
                     BITMIND Moments
                   </h2>
 
-                  <p className="text-[clamp(1.05rem,1.45vw,1.25rem)] leading-relaxed text-background/80">
+                  <p className="text-[clamp(1.05rem,1.45vw,1.25rem)] leading-relaxed text-white/80">
                     Digital experiences for life&apos;s meaningful moments. Designed for
                     weddings, birthdays, anniversaries, and celebrations that deserve
                     more than a generic template.
                   </p>
 
-                  <div className="flex flex-col gap-4 border-y border-background/10 py-6">
-                    <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-background/50">
+                  <div className="flex flex-col gap-4 border-y border-white/10 py-6">
+                    <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
                       Experience Categories
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {momentsCategories.map((category) => (
                         <span
                           key={category}
-                          className="rounded-full bg-background/5 px-3 py-1 text-xs text-background/85"
+                          className="rounded-full bg-white/5 px-3 py-1 text-xs text-white/85"
                         >
                           {category}
                         </span>
@@ -154,7 +154,7 @@ export default async function ProductsPage() {
                     </div>
                   </div>
 
-                  <p className="max-w-xl text-sm leading-relaxed text-background/70 md:text-base">
+                  <p className="max-w-xl text-sm leading-relaxed text-white/70 md:text-base">
                     BITMIND Moments is currently presented as a guided, done-for-you
                     product experience. The platform vision is expanding, but the
                     public flow today stays grounded in what BITMIND can honestly
@@ -165,7 +165,7 @@ export default async function ProductsPage() {
                     <Button
                       href={getProductHref(moments)}
                       size="lg"
-                      className="bg-background text-foreground hover:bg-background/90"
+                      className="bg-white text-black hover:bg-white/90"
                     >
                       Explore BITMIND Moments
                     </Button>
@@ -173,7 +173,7 @@ export default async function ProductsPage() {
                       href="/contact"
                       variant="ghost"
                       size="lg"
-                      className="text-background hover:bg-background/10"
+                      className="text-white hover:bg-white/10"
                     >
                       Request an Experience
                     </Button>
@@ -185,7 +185,7 @@ export default async function ProductsPage() {
                 <div className="relative mx-auto w-full max-w-4xl">
                   <BrowserFrame
                     url="moments.bitmind-studio.com"
-                    className="border-background/15 bg-background/5"
+                    className="border-white/15 bg-white/[0.03]"
                   >
                     <div className="relative aspect-[16/10] overflow-hidden bg-[#F7F8FB] p-5 sm:p-8">
                       <div className="flex h-full flex-col justify-between rounded-[1.5rem] border border-[#D9DEEB] bg-white/90 p-5 shadow-sm sm:p-8">
@@ -232,8 +232,8 @@ export default async function ProductsPage() {
                   </BrowserFrame>
 
                   <div className="absolute -bottom-10 right-4 hidden w-36 md:block xl:w-40">
-                    <DeviceFrame className="border-2 border-background/20 bg-white shadow-2xl">
-                      <div className="flex h-full flex-col bg-[#FBFBFD] p-4 text-center">
+                    <DeviceFrame className="border-2 border-white/20 bg-white/[0.03] shadow-2xl">
+                      <div className="flex h-full flex-col bg-surface p-4 text-center">
                         <span className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-accent">
                           A Special Day
                         </span>
@@ -315,7 +315,7 @@ export default async function ProductsPage() {
       <Section className="border-t border-border py-20 md:py-24 lg:py-28">
         <Container>
           <FadeIn>
-            <div className="grid gap-8 rounded-[1.75rem] border border-border bg-foreground px-6 py-10 text-background md:px-10 md:py-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-end lg:px-12">
+            <div className="grid gap-8 rounded-[1.75rem] border border-border bg-foreground px-6 py-10 text-white md:px-10 md:py-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-end lg:px-12">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
                   Custom Solution Bridge
@@ -323,7 +323,7 @@ export default async function ProductsPage() {
                 <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
                   Need something more tailored than the current product lineup?
                 </h2>
-                <p className="mt-4 max-w-2xl text-base leading-relaxed text-background/75 md:text-lg">
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/75 md:text-lg">
                   BITMIND can also shape custom digital solutions when your need is
                   more specific than a productized offering — from business systems
                   to product-led brand experiences.
@@ -334,13 +334,13 @@ export default async function ProductsPage() {
                 <Button
                   href="/contact"
                   size="lg"
-                  className="bg-background text-foreground hover:bg-background/90"
+                  className="bg-white text-black hover:bg-white/90"
                 >
                   Start a Conversation
                 </Button>
                 <a
                   href="/services"
-                  className="group inline-flex items-center gap-2 text-sm font-medium text-background/85 transition-colors hover:text-background"
+                  className="group inline-flex items-center gap-2 text-sm font-medium text-white/85 transition-colors hover:text-white"
                 >
                   Explore Services
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

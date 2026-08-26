@@ -195,7 +195,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
       <Section className="border-t border-border py-20 md:py-24 lg:py-28">
         <Container>
-          <div className="grid gap-8 rounded-[1.75rem] border border-border bg-foreground px-6 py-10 text-background md:px-10 md:py-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-end lg:px-12">
+          <div className="grid gap-8 rounded-[1.75rem] border border-border bg-foreground px-6 py-10 text-white md:px-10 md:py-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-end lg:px-12">
             <FadeIn>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
@@ -204,7 +204,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
                   {status.label}
                 </h2>
-                <p className="mt-4 max-w-2xl text-base leading-relaxed text-background/75 md:text-lg">
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/75 md:text-lg">
                   {detail.statusNote}
                 </p>
               </div>
@@ -215,7 +215,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <Button
                   href={detail.primaryCta.href}
                   size="lg"
-                  className="bg-background text-foreground hover:bg-background/90"
+                  className="bg-white text-black hover:bg-white/90"
                 >
                   {detail.primaryCta.label}
                 </Button>
@@ -223,7 +223,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   href="/products"
                   variant="ghost"
                   size="lg"
-                  className="text-background hover:bg-background/10"
+                  className="text-white hover:bg-white/10"
                 >
                   Browse Products
                 </Button>
