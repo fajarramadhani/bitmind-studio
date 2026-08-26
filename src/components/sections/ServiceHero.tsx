@@ -1,11 +1,10 @@
 import { Container } from "@/components/layout/Container"
-import { Section } from "@/components/layout/Section"
 import { Button } from "@/components/ui/Button"
 import { FadeIn } from "@/components/shared/FadeIn"
 
 export function ServiceHero() {
   return (
-    <Section className="pb-0 pt-32 md:pt-40 lg:pt-48">
+    <section className="py-12 md:py-16 lg:py-20">
       <Container>
         <FadeIn>
           <div className="flex max-w-4xl flex-col gap-8">
@@ -31,6 +30,6 @@ export function ServiceHero() {
           </div>
         </FadeIn>
       </Container>
-    </Section>
+    </section>
   )
 }
