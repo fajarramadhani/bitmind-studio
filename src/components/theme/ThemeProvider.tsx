@@ -7,6 +7,7 @@ type Theme = "light" | "dark" | "system"
 interface ThemeContextType {
   theme: Theme
   resolvedTheme: "light" | "dark"
+  mounted: boolean
   setTheme: (theme: Theme) => void
 }
 
@@ -28,22 +29,33 @@ function getResolvedTheme(theme: Theme): "light" | "dark" {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme)
-  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">(() =>
-    getResolvedTheme(getInitialTheme())
-  )
+  const [theme, setTheme] = useState<Theme>("system")
+  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light")
+  const [mounted, setMounted] = useState(false)
 
-  // Apply theme on mount and when theme changes
+  // Mount: read actual theme and sync state + DOM
   useEffect(() => {
-    const root = document.documentElement
-    root.classList.remove("light", "dark")
-    root.classList.add(resolvedTheme)
+    const initial = getInitialTheme()
+    const resolved = getResolvedTheme(initial)
+    setTheme(initial)
+    setResolvedTheme(resolved)
+    setMounted(true)
+    document.documentElement.classList.remove("light", "dark")
+    document.documentElement.classList.add(resolved)
+    localStorage.setItem("theme", initial)
+  }, [])
+
+  // Persist theme changes
+  useEffect(() => {
+    if (!mounted) return
+    document.documentElement.classList.remove("light", "dark")
+    document.documentElement.classList.add(resolvedTheme)
     localStorage.setItem("theme", theme)
-  }, [theme, resolvedTheme])
+  }, [theme, resolvedTheme, mounted])
 
-  // Listen for system theme changes
+  // Listen for system preference changes when theme is "system"
   useEffect(() => {
-    if (theme !== "system") return
+    if (!mounted || theme !== "system") return
 
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
     const handleChange = (e: MediaQueryListEvent) => {
@@ -55,7 +67,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     mediaQuery.addEventListener("change", handleChange)
     return () => mediaQuery.removeEventListener("change", handleChange)
-  }, [theme])
+  }, [theme, mounted])
 
   const handleSetTheme = (newTheme: Theme) => {
     setTheme(newTheme)
@@ -65,7 +77,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   return (
     <ThemeContext.Provider
-      value={{ theme, resolvedTheme, setTheme: handleSetTheme }}
+      value={{ theme, resolvedTheme, mounted, setTheme: handleSetTheme }}
     >
       {children}
     </ThemeContext.Provider>
