@@ -25,13 +25,13 @@
   --brand-primary-hover: #1a7aff;
   --brand-primary-soft: #0d1f3d;
   --brand-primary-dark: #4d99ff;
-  --brand-primary-foreground: #000000;
+  --brand-primary-foreground: #ffffff;
   --background: #0e0e0e;
   --foreground: #f0f0f0;
   --surface: #1a1a1a;
   --surface-soft: #242424;
-  --surface-dark: #0e0e0e;
-  --surface-dark-elevated: #1a1a1a;
+  --surface-dark: #161616;
+  --surface-dark-elevated: #1e1e1e;
   --muted: #1a1a1a;
   --muted-foreground: #a0a0a0;
   --border: #2a2a2a;
