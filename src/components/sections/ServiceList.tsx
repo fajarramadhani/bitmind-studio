@@ -4,7 +4,7 @@ import { Container } from "@/components/layout/Container"
 import { Section } from "@/components/layout/Section"
 import { SectionHeading } from "@/components/layout/SectionHeading"
 import { services } from "@/data/services"
-import { FadeIn, Stagger, StaggerItem } from "@/components/shared/FadeIn"
+import { FadeIn } from "@/components/shared/FadeIn"
 import { Badge } from "@/components/ui/Badge"
 import type { Service } from "@/types"
 
@@ -14,9 +14,9 @@ function ServiceBlock({ service, index }: { service: Service; index: number }) {
       id={service.slug}
       className="group scroll-mt-28"
     >
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
-        {/* Left column - sticky sidebar */}
-        <aside className="hidden lg:block lg:sticky lg:top-32 lg:self-start lg:max-h-[calc(100vh-8rem)] lg:overflow-hidden">
+      <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
+        {/* Left column - sticky title */}
+        <aside className="hidden lg:block lg:sticky lg:top-32 lg:self-start">
           <div className="flex flex-col gap-6 pt-2">
             <span className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-accent">
               0{index + 1}
@@ -39,6 +39,24 @@ function ServiceBlock({ service, index }: { service: Service; index: number }) {
 
         {/* Right column - scrollable content */}
         <div className="flex flex-col gap-10">
+          {/* Mobile-only title (hidden on lg) */}
+          <div className="lg:hidden">
+            <span className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-accent">
+              0{index + 1}
+            </span>
+            <h3 className="mt-3 text-[clamp(1.7rem,2.7vw,2.4rem)] font-semibold leading-[1.06] tracking-[-0.02em] text-foreground">
+              {service.title}
+            </h3>
+            {service.valueStatement ? (
+              <p className="mt-4 max-w-md text-[1rem] leading-relaxed text-muted-foreground">
+                {service.valueStatement}
+              </p>
+            ) : null}
+            <p className="mt-4 text-[1rem] leading-relaxed text-muted-foreground">
+              {service.description}
+            </p>
+          </div>
+
           {service.subOffers && service.subOffers.length > 0 ? (
             <div>
               <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
@@ -100,13 +118,11 @@ export function ServiceList() {
             </div>
           </FadeIn>
 
-          <Stagger className="flex flex-col divide-y divide-border" staggerDelay={0.08}>
+          <div className="flex flex-col divide-y divide-border">
             {services.map((service, i) => (
-              <StaggerItem key={service.slug}>
-                <ServiceBlock service={service} index={i} />
-              </StaggerItem>
+              <ServiceBlock key={service.slug} service={service} index={i} />
             ))}
-          </Stagger>
+          </div>
         </div>
       </Container>
     </Section>
