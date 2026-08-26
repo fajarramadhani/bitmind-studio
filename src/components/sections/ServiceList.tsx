@@ -12,30 +12,33 @@ function ServiceBlock({ service, index }: { service: Service; index: number }) {
   return (
     <article
       id={service.slug}
-      className="group scroll-mt-28 py-12"
+      className="group scroll-mt-28"
     >
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-14">
-        <div className="flex flex-col gap-5">
-          <span className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-accent">
-            0{index + 1}
-          </span>
-          <div>
-            <h3 className="text-[clamp(1.7rem,2.7vw,2.4rem)] font-semibold leading-[1.06] tracking-[-0.02em] text-foreground">
-              {service.title}
-            </h3>
-            {service.valueStatement ? (
-              <p className="mt-4 max-w-md text-[1rem] leading-relaxed text-muted-foreground">
-                {service.valueStatement}
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
+        {/* Left column - sticky sidebar */}
+        <aside className="hidden lg:block lg:sticky lg:top-32 lg:self-start lg:max-h-[calc(100vh-8rem)] lg:overflow-hidden">
+          <div className="flex flex-col gap-6 pt-2">
+            <span className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-accent">
+              0{index + 1}
+            </span>
+            <div>
+              <h3 className="text-[clamp(1.7rem,2.7vw,2.4rem)] font-semibold leading-[1.06] tracking-[-0.02em] text-foreground">
+                {service.title}
+              </h3>
+              {service.valueStatement ? (
+                <p className="mt-4 max-w-md text-[1rem] leading-relaxed text-muted-foreground">
+                  {service.valueStatement}
+                </p>
+              ) : null}
+              <p className="mt-6 max-w-md text-[1rem] leading-relaxed text-muted-foreground">
+                {service.description}
               </p>
-            ) : null}
+            </div>
           </div>
-        </div>
+        </aside>
 
-        <div className="flex flex-col gap-8">
-          <p className="max-w-2xl text-[1rem] leading-relaxed text-muted-foreground md:text-[1.04rem]">
-            {service.description}
-          </p>
-
+        {/* Right column - scrollable content */}
+        <div className="flex flex-col gap-10">
           {service.subOffers && service.subOffers.length > 0 ? (
             <div>
               <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
