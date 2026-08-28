@@ -33,7 +33,7 @@ export function ProductCard({ product }: ProductCardProps) {
             className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
           />
         ) : (
-          <div className="flex h-full w-full flex-col justify-between bg-[linear-gradient(180deg,rgba(255,255,255,0.7),rgba(246,246,243,0.95))] p-6">
+          <div className="flex h-full w-full flex-col justify-between bg-surface-soft p-6">
             <span className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-accent">
               {product.category}
             </span>

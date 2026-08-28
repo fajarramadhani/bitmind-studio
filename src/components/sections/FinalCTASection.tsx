@@ -12,7 +12,7 @@ export function FinalCTASection() {
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(40rem_30rem_at_80%_80%,rgba(0,101,255,0.15),transparent_60%)]" />
             <div className="relative grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
               <div className="flex max-w-3xl flex-col gap-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5aa9ff]">
                   Start a Project
                 </p>
 
@@ -29,7 +29,7 @@ export function FinalCTASection() {
                   href="/contact"
                   variant="secondary"
                   size="lg"
-                  className="border-white/20 bg-white/10 text-white hover:bg-white/20"
+                  className="w-full border-white/20 bg-white/10 text-white hover:bg-white/20 sm:w-auto"
                 >
                   Start a Project
                 </Button>
@@ -37,7 +37,7 @@ export function FinalCTASection() {
                   href="/work"
                   variant="ghost"
                   size="lg"
-                  className="text-white hover:bg-white/10"
+                  className="w-full text-white hover:bg-white/10 sm:w-auto"
                 >
                   View Our Work
                 </Button>

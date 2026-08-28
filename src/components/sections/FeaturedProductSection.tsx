@@ -13,7 +13,7 @@ export function FeaturedProductSection() {
           <FadeIn>
             <div className="flex flex-col gap-6">
               <div className="flex items-center gap-3">
-                <span className="text-[0.65rem] font-bold uppercase tracking-[0.25em] text-accent">
+                <span className="text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[#5aa9ff]">
                   Featured Product
                 </span>
               </div>
@@ -29,7 +29,7 @@ export function FeaturedProductSection() {
               </p>
 
               <div className="flex flex-col gap-4 border-y border-white/10 py-6">
-                <h4 className="text-[0.65rem] font-bold uppercase tracking-[0.25em] text-white/50">
+                <h4 className="text-[0.65rem] font-bold uppercase tracking-[0.25em] text-white/65">
                   Experience Categories
                 </h4>
                 <div className="flex flex-wrap gap-2">

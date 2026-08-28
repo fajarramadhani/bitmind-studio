@@ -12,7 +12,7 @@ function ServiceBlock({ service, index }: { service: Service; index: number }) {
   return (
     <article
       id={service.slug}
-      className="group scroll-mt-28"
+      className="group scroll-mt-28 py-12 md:py-16"
     >
       <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
         {/* Left column - sticky title */}

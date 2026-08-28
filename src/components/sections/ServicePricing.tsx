@@ -19,7 +19,7 @@ export function ServicePricing() {
       <Container>
         <FadeIn>
           <div className="mb-12 max-w-2xl md:mb-16">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5aa9ff]">
               Investment &amp; Scope
             </p>
             <h2 className="mt-4 text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-[1.06] tracking-[-0.02em] text-white">
@@ -36,7 +36,7 @@ export function ServicePricing() {
         <div className="grid gap-6 md:grid-cols-2">
           <FadeIn delay={0.08}>
             <div className="rounded-[1.25rem] border border-white/10 bg-white/5 p-7">
-              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-accent">
+              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[#5aa9ff]">
                 What shapes investment
               </p>
               <Stagger className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -58,7 +58,7 @@ export function ServicePricing() {
           <FadeIn delay={0.12}>
             <div className="flex h-full flex-col justify-between rounded-[1.25rem] border border-white/10 bg-white/5 p-7">
               <div>
-                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-accent">
+                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[#5aa9ff]">
                   Commercial framing
                 </p>
                 <p className="mt-3 text-[0.95rem] leading-relaxed text-white/80">

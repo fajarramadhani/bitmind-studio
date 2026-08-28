@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { Container } from "@/components/layout/Container"
 import { Section } from "@/components/layout/Section"
 import { FadeIn, Stagger, StaggerItem } from "@/components/shared/FadeIn"
@@ -63,10 +64,13 @@ export function ServiceIncluded() {
               <p className="mt-4 flex-1 text-[0.95rem] leading-relaxed text-muted-foreground">
                 {item.description}
               </p>
-              <div className="mt-6 flex items-center gap-2 text-sm font-medium text-foreground opacity-0 transition-all duration-300 group-hover:opacity-100">
-                Learn more
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </div>
+              <Link
+                href="/contact"
+                className="group/link mt-6 inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-accent"
+              >
+                Discuss this model
+                <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
+              </Link>
             </StaggerItem>
           ))}
         </Stagger>

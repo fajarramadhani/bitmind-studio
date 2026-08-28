@@ -33,7 +33,7 @@ export function ProjectCard({ project, variant = "default" }: ProjectCardProps) 
             className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
           />
         ) : (
-          <div className="flex h-full w-full items-end bg-[linear-gradient(180deg,rgba(255,255,255,0.5),rgba(246,246,243,1))] p-6 text-left md:p-8">
+          <div className="flex h-full w-full items-end bg-surface-soft p-6 text-left md:p-8">
             <div>
               <span className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-accent">
                 {project.category}
