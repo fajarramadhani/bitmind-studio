@@ -154,7 +154,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: reduceMotion ? 0 : -10 }}
             transition={{ duration: reduceMotion ? 0 : 0.24 }}
-            className="absolute inset-x-0 top-full min-h-dvh overflow-y-auto border-t border-border bg-surface/95 backdrop-blur-md md:hidden"
+            className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-border bg-background backdrop-blur-xl md:hidden"
           >
             <Container className="py-8">
               <ul className="flex flex-col">

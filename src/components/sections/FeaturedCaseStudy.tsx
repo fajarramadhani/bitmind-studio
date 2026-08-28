@@ -13,13 +13,13 @@ export function FeaturedCaseStudy({ project }: { project: Project | null }) {
   }
 
   return (
-    <Section className="bg-foreground py-20 text-white md:py-24 lg:py-28">
+    <Section className="bg-surface-dark py-20 text-white md:py-24 lg:py-28">
       <Container>
         <div className="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-center lg:gap-16">
           <FadeIn>
             <div className="flex flex-col gap-6">
               <div className="flex items-center gap-3">
-                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5aa9ff]">
                   Featured Case Study
                 </span>
                 <Badge

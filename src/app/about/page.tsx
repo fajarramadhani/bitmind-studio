@@ -162,11 +162,11 @@ export default function AboutPage() {
                 each one the attention it deserves. If you have an idea, a
                 problem, or a vision — let&apos;s talk about how to bring it to life.
               </p>
-              <div className="flex flex-wrap justify-center gap-3 pt-2">
-                <Button href="/contact" size="lg">
+              <div className="flex w-full flex-col justify-center gap-3 pt-2 min-[390px]:w-auto min-[390px]:flex-row">
+                <Button href="/contact" size="lg" className="w-full min-[390px]:w-auto">
                   Start a Conversation
                 </Button>
-                <Button href="/work" variant="secondary" size="lg">
+                <Button href="/work" variant="secondary" size="lg" className="w-full min-[390px]:w-auto">
                   See Our Work
                   <ArrowRight className="h-4 w-4" />
                 </Button>

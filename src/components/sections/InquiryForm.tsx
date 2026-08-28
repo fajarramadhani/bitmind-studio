@@ -236,6 +236,7 @@ export function InquiryForm() {
         <Button
           type="submit"
           size="lg"
+          className="w-full"
           disabled={isPending}
           aria-describedby="inquiry-status"
         >

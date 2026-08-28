@@ -71,10 +71,10 @@ export default async function ProductsPage() {
                   into carefully designed digital products.
                 </p>
                 <div className="flex flex-col gap-3 min-[390px]:flex-row min-[390px]:flex-wrap">
-                  <Button href={moments ? getProductHref(moments) : "/moments"} size="lg">
+                  <Button href={moments ? getProductHref(moments) : "/moments"} size="lg" className="w-full min-[390px]:w-auto">
                     Explore BITMIND Moments
                   </Button>
-                  <Button href="/contact" variant="secondary" size="lg">
+                  <Button href="/contact" variant="secondary" size="lg" className="w-full min-[390px]:w-auto">
                     Talk to BITMIND
                   </Button>
                 </div>
@@ -118,7 +118,7 @@ export default async function ProductsPage() {
               <FadeIn>
                 <div className="flex flex-col gap-6">
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5aa9ff]">
                       Featured Product
                     </span>
                     {momentsStatus ? (
@@ -139,7 +139,7 @@ export default async function ProductsPage() {
                   </p>
 
                   <div className="flex flex-col gap-4 border-y border-white/10 py-6">
-                    <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+                    <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/65">
                       Experience Categories
                     </h3>
                     <div className="flex flex-wrap gap-2">
@@ -165,7 +165,7 @@ export default async function ProductsPage() {
                     <Button
                       href={getProductHref(moments)}
                       size="lg"
-                      className="bg-white text-black hover:bg-white/90"
+                      className="w-full bg-white text-black hover:bg-white/90 sm:w-auto"
                     >
                       Explore BITMIND Moments
                     </Button>
@@ -173,7 +173,7 @@ export default async function ProductsPage() {
                       href="/contact"
                       variant="ghost"
                       size="lg"
-                      className="text-white hover:bg-white/10"
+                      className="w-full text-white hover:bg-white/10 sm:w-auto"
                     >
                       Request an Experience
                     </Button>
@@ -190,39 +190,39 @@ export default async function ProductsPage() {
                     <div className="relative aspect-[16/10] overflow-hidden bg-[#F7F8FB] p-5 sm:p-8">
                       <div className="flex h-full flex-col justify-between rounded-[1.5rem] border border-[#D9DEEB] bg-white/90 p-5 shadow-sm sm:p-8">
                         <div className="max-w-md">
-                          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-accent">
+                          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[#004bbf]">
                             BITMIND Moments
                           </p>
-                          <h3 className="mt-4 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                          <h3 className="mt-4 text-3xl font-semibold tracking-tight text-[#141414] sm:text-4xl">
                             A special way to share a meaningful day.
                           </h3>
-                          <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                          <p className="mt-4 text-sm leading-relaxed text-[#5c5c5c] sm:text-base">
                             A privacy-safe preview for beautifully presented event
                             stories, details, and invitations.
                           </p>
                         </div>
                         <div className="grid gap-3 sm:grid-cols-3">
                           <div className="rounded-2xl bg-[#EEF2FF] p-4">
-                            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
+                            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#004bbf]">
                               Story
                             </p>
-                            <p className="mt-2 text-sm text-foreground">
+                            <p className="mt-2 text-sm text-[#141414]">
                               Personal narrative and opening moments.
                             </p>
                           </div>
                           <div className="rounded-2xl bg-[#F5F7FB] p-4">
-                            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
+                            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#004bbf]">
                               Details
                             </p>
-                            <p className="mt-2 text-sm text-foreground">
+                            <p className="mt-2 text-sm text-[#141414]">
                               Event schedule, location, and shareable information.
                             </p>
                           </div>
                           <div className="rounded-2xl bg-[#EEF2FF] p-4">
-                            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
+                            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#004bbf]">
                               Memories
                             </p>
-                            <p className="mt-2 text-sm text-foreground">
+                            <p className="mt-2 text-sm text-[#141414]">
                               Photo-led storytelling with a calmer mobile rhythm.
                             </p>
                           </div>
@@ -315,9 +315,9 @@ export default async function ProductsPage() {
       <Section className="border-t border-border py-20 md:py-24 lg:py-28">
         <Container>
           <FadeIn>
-            <div className="grid gap-8 rounded-[1.75rem] border border-border bg-foreground px-6 py-10 text-white md:px-10 md:py-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-end lg:px-12">
+            <div className="grid gap-8 rounded-[1.75rem] border border-white/10 bg-surface-dark px-6 py-10 text-white md:px-10 md:py-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-end lg:px-12">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5aa9ff]">
                   Custom Solution Bridge
                 </p>
                 <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
@@ -334,7 +334,7 @@ export default async function ProductsPage() {
                 <Button
                   href="/contact"
                   size="lg"
-                  className="bg-white text-black hover:bg-white/90"
+                  className="w-full bg-white text-black hover:bg-white/90 sm:w-auto"
                 >
                   Start a Conversation
                 </Button>

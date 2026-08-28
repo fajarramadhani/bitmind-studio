@@ -284,16 +284,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       ) : null}
 
       {approachSections.length > 0 ? (
-        <Section className="bg-foreground py-24 text-background">
+        <Section className="bg-surface-dark py-24 text-white">
           <Container>
             <div className="mx-auto flex max-w-4xl flex-col gap-16">
               {approachSections.map((section) => (
                 <FadeIn key={section.label}>
                   <div className="grid gap-6 md:grid-cols-[1fr_2fr] lg:gap-12">
-                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5aa9ff]">
                       {section.label}
                     </span>
-                    <p className="text-lg leading-relaxed text-background/80">
+                    <p className="text-lg leading-relaxed text-white/80">
                       {section.body}
                     </p>
                   </div>
@@ -360,7 +360,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-accent px-7 py-3 text-base font-medium text-accent-foreground transition-all hover:bg-accent/90 hover:shadow-sm active:bg-accent/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-accent px-7 py-3 text-base font-medium text-accent-foreground transition-all hover:bg-accent/90 hover:shadow-sm active:bg-accent/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background min-[390px]:w-auto"
                   >
                     View Live Experience ↗
                   </a>
@@ -372,7 +372,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       ) : null}
 
       {nextProject ? (
-        <Section className="group relative overflow-hidden bg-foreground py-24 text-background md:py-32">
+        <Section className="group relative overflow-hidden bg-surface-dark py-24 text-white md:py-32">
           <Link
             href={`/work/${nextProject.slug}`}
             className="absolute inset-0 z-10 block"
@@ -380,16 +380,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           />
           <Container>
             <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent/80 transition-colors group-hover:text-accent">
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5aa9ff]/80 transition-colors group-hover:text-[#5aa9ff]">
                 Next Project
               </span>
-              <h2 className="text-4xl font-semibold leading-none tracking-tight text-background transition-colors group-hover:text-accent md:text-6xl lg:text-7xl">
+              <h2 className="text-4xl font-semibold leading-none tracking-tight text-white transition-colors group-hover:text-[#7ab8ff] md:text-6xl lg:text-7xl">
                 {nextProject.title}
               </h2>
               {nextProjectMeta ? (
-                <p className="text-base text-background/60">{nextProjectMeta}</p>
+                <p className="text-base text-white/60">{nextProjectMeta}</p>
               ) : null}
-              <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-background/20 px-6 py-3 text-sm font-semibold text-background transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-accent-foreground">
+              <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-accent-foreground">
                 View Next Project
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </div>

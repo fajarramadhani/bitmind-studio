@@ -117,10 +117,10 @@ export default function MomentsPage() {
                   people want to remember and share with care.
                 </p>
                 <div className="flex flex-col gap-3 min-[390px]:flex-row min-[390px]:flex-wrap">
-                  <Button href="#categories" size="lg">
+                  <Button href="#categories" size="lg" className="w-full min-[390px]:w-auto">
                     Explore Experiences
                   </Button>
-                  <Button href="#how-it-works" variant="secondary" size="lg">
+                  <Button href="#how-it-works" variant="secondary" size="lg" className="w-full min-[390px]:w-auto">
                     View How It Works
                   </Button>
                 </div>
@@ -141,14 +141,14 @@ export default function MomentsPage() {
                     <div className="grid h-full gap-5 rounded-[1.5rem] border border-[#DBE1EF] bg-white/90 p-5 shadow-sm sm:grid-cols-[1.2fr_0.8fr] sm:p-8">
                       <div className="flex flex-col justify-between">
                         <div>
-                          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-accent">
+                          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[#004bbf]">
                             Your moment, beautifully remembered.
                           </p>
-                          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-[#141414] sm:text-4xl">
                             A special day,
                             <br /> thoughtfully shared.
                           </h2>
-                          <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
+                          <p className="mt-4 max-w-md text-sm leading-relaxed text-[#5c5c5c] sm:text-base">
                             Editorial storytelling, elegant event information, and a
                             mobile-first rhythm designed for moments people genuinely
                             care about.
@@ -156,18 +156,18 @@ export default function MomentsPage() {
                         </div>
                         <div className="grid gap-3 sm:grid-cols-2">
                           <div className="rounded-2xl bg-[#EEF2FF] p-4">
-                            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
+                            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#004bbf]">
                               Storytelling
                             </p>
-                            <p className="mt-2 text-sm text-foreground">
+                            <p className="mt-2 text-sm text-[#141414]">
                               Open with personality, not with a generic template feel.
                             </p>
                           </div>
                           <div className="rounded-2xl bg-[#F5F7FB] p-4">
-                            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
+                            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#004bbf]">
                               Mobile First
                             </p>
-                            <p className="mt-2 text-sm text-foreground">
+                            <p className="mt-2 text-sm text-[#141414]">
                               Built to feel especially strong on phone-sized screens.
                             </p>
                           </div>
@@ -176,13 +176,13 @@ export default function MomentsPage() {
 
                       <div className="hidden rounded-[1.25rem] bg-[#F7F8FB] p-4 sm:flex sm:flex-col sm:justify-between">
                         <div>
-                          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-accent">
+                          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[#004bbf]">
                             Preview Concept
                           </p>
-                          <h3 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">
+                          <h3 className="mt-3 text-2xl font-semibold tracking-tight text-[#141414]">
                             Nadine&apos;s 25th
                           </h3>
-                          <p className="mt-2 text-sm text-muted-foreground">
+                          <p className="mt-2 text-sm text-[#5c5c5c]">
                             A Special Day · 12 December 2026
                           </p>
                         </div>
@@ -199,17 +199,17 @@ export default function MomentsPage() {
                 <div className="absolute -bottom-10 right-4 hidden w-36 md:block xl:w-40">
                   <DeviceFrame className="border-2 bg-white shadow-2xl">
                     <div className="flex h-full flex-col bg-[#FBFBFD] p-4 text-center">
-                      <span className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-accent">
+                      <span className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[#004bbf]">
                         A Special Day
                       </span>
-                      <span className="mt-4 text-xl font-semibold tracking-tight text-foreground">
+                      <span className="mt-4 text-xl font-semibold tracking-tight text-[#141414]">
                         Nadine&apos;s 25th
                       </span>
-                      <span className="mt-2 text-xs text-muted-foreground">
+                      <span className="mt-2 text-xs text-[#5c5c5c]">
                         Celebrate with us
                       </span>
                       <div className="mt-5 flex-1 rounded-2xl bg-[#E8ECF8]" />
-                      <div className="mt-4 h-10 rounded-full bg-foreground" />
+                      <div className="mt-4 h-10 rounded-full bg-[#141414]" />
                     </div>
                   </DeviceFrame>
                 </div>
@@ -311,18 +311,18 @@ export default function MomentsPage() {
         </Container>
       </Section>
 
-      <Section className="border-t border-border-dark bg-surface-dark py-20 text-background md:py-24 lg:py-28">
+      <Section className="border-t border-border-dark bg-surface-dark py-20 text-white md:py-24 lg:py-28">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-end">
             <FadeIn>
               <div className="max-w-3xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5aa9ff]">
                   Experience Preview
                 </p>
-                <h2 className="mt-4 text-[clamp(2rem,4.5vw,3.6rem)] font-semibold leading-[1.06] tracking-[-0.02em] text-background">
+                <h2 className="mt-4 text-[clamp(2rem,4.5vw,3.6rem)] font-semibold leading-[1.06] tracking-[-0.02em] text-white">
                   Fictional preview, real design intent.
                 </h2>
-                <p className="mt-4 text-[clamp(1rem,1.25vw,1.15rem)] leading-relaxed text-background/75">
+                <p className="mt-4 text-[clamp(1rem,1.25vw,1.15rem)] leading-relaxed text-white/75">
                   This concept uses a fictional celebration and purpose-built copy to
                   demonstrate the art direction, storytelling rhythm, and mobile-first
                   presentation of BITMIND Moments.
@@ -331,11 +331,11 @@ export default function MomentsPage() {
             </FadeIn>
 
             <FadeIn delay={0.14}>
-              <div className="rounded-[1.5rem] border border-background/10 bg-background/5 p-6">
-                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-accent">
+              <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6">
+                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[#5aa9ff]">
                   Preview Details
                 </p>
-                <div className="mt-4 space-y-3 text-[0.98rem] leading-relaxed text-background/80">
+                <div className="mt-4 space-y-3 text-[0.98rem] leading-relaxed text-white/80">
                   <p>Concept: Nadine&apos;s 25th</p>
                   <p>Theme: A Special Day</p>
                   <p>Date: 12 December 2026</p>
@@ -396,10 +396,10 @@ export default function MomentsPage() {
                 </div>
 
                 <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-start">
-                  <Button href="/contact" size="lg">
+                  <Button href="/contact" size="lg" className="w-full sm:w-auto">
                     Request an Experience
                   </Button>
-                  <Button href="/products" variant="ghost" size="lg">
+                  <Button href="/products" variant="ghost" size="lg" className="w-full sm:w-auto">
                     Back to Products
                   </Button>
                 </div>

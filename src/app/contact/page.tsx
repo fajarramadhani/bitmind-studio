@@ -27,10 +27,10 @@ export default function ContactPage() {
                 Review our work and services before deciding which direction fits
                 your project.
               </p>
-              <div className="flex flex-wrap justify-center gap-3">
+              <div className="flex w-full flex-col justify-center gap-3 min-[390px]:w-auto min-[390px]:flex-row">
                 <Link
                   href="/work"
-                  className="inline-flex min-h-12 items-center justify-center rounded-lg border border-border bg-surface px-7 py-3 text-base font-medium text-foreground transition-colors hover:border-accent/30 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  className="inline-flex min-h-12 w-full items-center justify-center rounded-lg border border-border bg-surface px-7 py-3 text-base font-medium text-foreground transition-colors hover:border-accent/30 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-[390px]:w-auto"
                 >
                   View Our Work
                 </Link>
@@ -39,7 +39,7 @@ export default function ContactPage() {
                     href={`https://wa.me/${siteConfig.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-12 items-center justify-center rounded-lg bg-accent px-7 py-3 text-base font-medium text-accent-foreground transition-colors hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                    className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-accent px-7 py-3 text-base font-medium text-accent-foreground transition-colors hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-[390px]:w-auto"
                   >
                     Chat with BITMIND →
                   </a>

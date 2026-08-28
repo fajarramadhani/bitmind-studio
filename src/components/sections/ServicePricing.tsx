@@ -45,7 +45,7 @@ export function ServicePricing() {
                     key={item}
                     className="flex items-start gap-3 rounded-xl border border-white/8 bg-white/5 px-4 py-4 transition-colors hover:bg-white/8"
                   >
-                    <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                    <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-[#5aa9ff]" />
                     <span className="text-sm leading-relaxed text-white/85">
                       {item}
                     </span>
@@ -71,7 +71,7 @@ export function ServicePricing() {
                 <Button
                   href="/contact"
                   size="lg"
-                  className="bg-white text-black hover:bg-white/90"
+                  className="w-full bg-white text-black hover:bg-white/90 sm:w-auto"
                 >
                   Tell Us What You&apos;re Building
                 </Button>
