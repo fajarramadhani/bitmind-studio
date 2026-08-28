@@ -3,6 +3,15 @@
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 
+/** Shared motion language for the BITMIND visual system. */
+export const MOTION = {
+  ease: [0.21, 0.47, 0.32, 0.98] as [number, number, number, number],
+  duration: 0.5,
+  stagger: 0.08,
+  y: 24,
+  inViewMargin: "-60px",
+} as const
+
 type FadeInProps = {
   children: React.ReactNode
   className?: string
@@ -15,11 +24,11 @@ export function FadeIn({
   children,
   className,
   delay = 0,
-  duration = 0.5,
-  y = 24,
+  duration = MOTION.duration,
+  y = MOTION.y,
 }: FadeInProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: "-60px" })
+  const isInView = useInView(ref, { once: true, margin: MOTION.inViewMargin })
 
   return (
     <motion.div
@@ -27,7 +36,7 @@ export function FadeIn({
       className={className}
       initial={{ opacity: 0, y }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y }}
-      transition={{ duration, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
+      transition={{ duration, delay, ease: MOTION.ease }}
     >
       {children}
     </motion.div>
@@ -43,10 +52,10 @@ type StaggerProps = {
 export function Stagger({
   children,
   className,
-  staggerDelay = 0.08,
+  staggerDelay = MOTION.stagger,
 }: StaggerProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: "-60px" })
+  const isInView = useInView(ref, { once: true, margin: MOTION.inViewMargin })
 
   return (
     <motion.div
@@ -75,11 +84,11 @@ export function StaggerItem({
     <motion.div
       className={className}
       variants={{
-        hidden: { opacity: 0, y: 20 },
+        hidden: { opacity: 0, y: MOTION.y },
         visible: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] },
+          transition: { duration: MOTION.duration, ease: MOTION.ease },
         },
       }}
     >

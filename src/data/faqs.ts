@@ -5,38 +5,38 @@ export type FAQ = {
 
 export const faqs: FAQ[] = [
   {
-    question: "How much does a website cost?",
+    question: "What types of projects does BITMIND take on?",
     answer:
-      "Every project is different. Final pricing depends on scope, content, features and timeline. We provide a custom quotation after understanding your project requirements.",
+      "BITMIND focuses on five service areas: Website Design & Development, UI/UX Design, Digital Experiences, Business Systems, and Custom Digital Products. If your project sits near those areas but does not fit neatly into one label, you can still describe it through the inquiry flow.",
   },
   {
-    question: "How long does a project take?",
+    question: "Can BITMIND redesign an existing website?",
     answer:
-      "A landing page typically takes 1–2 weeks, a company profile website 2–4 weeks, and custom web applications depend on scope. We'll share a realistic timeline after we understand the project.",
+      "Yes. Website redesigns are part of the Website Design & Development service area when the goal is to improve clarity, usability, responsiveness, and the overall quality of the experience.",
   },
   {
-    question: "Do you provide hosting and domain setup?",
+    question: "Do you handle both design and development?",
     answer:
-      "BITMIND can help configure domain, deployment and production setup. Infrastructure recommendations depend on the project requirements.",
+      "Yes. BITMIND can support both the design and the build of a project, depending on what the work needs. In some cases, BITMIND can also contribute to only one part of the process when the scope is already clearly defined.",
   },
   {
-    question: "Can you redesign my existing website?",
+    question: "Can you work from an existing design or product direction?",
     answer:
-      "Yes. We redesign existing websites to improve visual quality, mobile experience, information hierarchy and overall performance while keeping what works.",
+      "Yes, as long as the starting point is clear enough to build from. BITMIND can work from an existing design direction, wireframe set, or product concept and help shape the next implementation steps.",
   },
   {
-    question: "Can you maintain the website after launch?",
+    question: "How long does a project usually take?",
     answer:
-      "Yes. Website Care & Maintenance covers content updates, minor fixes, performance monitoring, deployment support and technical maintenance.",
+      "Project duration depends on the scope, content readiness, interaction complexity, integrations, and decision flow. Once the project direction is clearer, BITMIND can suggest a more realistic timeline.",
   },
   {
-    question: "Can you build custom features?",
+    question: "What happens after launch?",
     answer:
-      "Yes. Beyond standard websites, we build custom web applications, dashboards and business tools tailored to your workflow.",
+      "The post-launch path depends on the type of project and what level of follow-up support is actually needed. If refinement, maintenance, or iteration is required, that can be discussed based on scope rather than assumed as a default package.",
   },
   {
-    question: "Do I need to prepare all content first?",
+    question: "Can I request something not listed here?",
     answer:
-      "No. Don't have everything ready yet? We can help define the content structure and guide you through what's needed before we start.",
+      "Yes. The listed pillars are meant to clarify the main direction of BITMIND's work, not block reasonable adjacent requests. If the project is relevant to BITMIND's capabilities, it can still be discussed through the inquiry process.",
   },
 ]

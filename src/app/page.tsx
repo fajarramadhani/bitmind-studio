@@ -1,38 +1,37 @@
 import { HeroSection } from "@/components/sections/HeroSection"
-import { CapabilityStrip } from "@/components/sections/CapabilityStrip"
 import { SelectedWorkSection } from "@/components/sections/SelectedWorkSection"
 import { ServicesSection } from "@/components/sections/ServicesSection"
-import { FeaturedCaseStudy } from "@/components/sections/FeaturedCaseStudy"
+import { FeaturedProductSection } from "@/components/sections/FeaturedProductSection"
 import { ProductsSection } from "@/components/sections/ProductsSection"
-import { WhyBitmindSection } from "@/components/sections/WhyBitmindSection"
 import { ProcessSection } from "@/components/sections/ProcessSection"
 import { AboutSection } from "@/components/sections/AboutSection"
 import { FinalCTASection } from "@/components/sections/FinalCTASection"
 import {
   getFeaturedProducts,
-  getFeaturedProjects,
   getPublishedProjects,
 } from "@/lib/content"
+import { getPublicPortfolioProjects } from "@/lib/project-portfolio"
 
 export const dynamic = "force-dynamic"
 
 export default async function Home() {
-  const [projects, featuredProjects, featuredProducts] = await Promise.all([
+  const [projects, featuredProducts] = await Promise.all([
     getPublishedProjects(),
-    getFeaturedProjects(),
     getFeaturedProducts(),
   ])
-  const featuredCaseStudy = featuredProjects[0] ?? projects[0] ?? null
+
+  // Only verified projects may appear as homepage proof. With the current
+  // inventory this intentionally renders the curated empty state instead of
+  // elevating excluded or unconfirmed records.
+  const verifiedProjects = getPublicPortfolioProjects(projects)
 
   return (
     <>
-      <HeroSection project={featuredCaseStudy} />
-      <CapabilityStrip />
-      <SelectedWorkSection projects={projects} />
+      <HeroSection project={null} />
+      <SelectedWorkSection projects={verifiedProjects} />
       <ServicesSection />
-      <FeaturedCaseStudy project={featuredCaseStudy} />
+      <FeaturedProductSection />
       <ProductsSection products={featuredProducts} />
-      <WhyBitmindSection />
       <ProcessSection />
       <AboutSection />
       <FinalCTASection />

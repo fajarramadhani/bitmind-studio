@@ -144,6 +144,24 @@ Production requires an explicit content source. It never silently falls back aft
 a database configuration failure. See `.env.example` and
 [`docs/supabase-setup.md`](docs/supabase-setup.md).
 
+## Branch Workflow
+
+Current safe workflow for content/CMS changes:
+
+```text
+dev         -> integration and verification branch
+main        -> production-ready branch
+production  -> deploy only from approved main
+```
+
+Recommended sequence:
+
+1. Make and verify changes on `dev`
+2. Re-run `npm run test`, `npm run lint`, and `npm run build`
+3. Verify Supabase/runtime behavior if the change touches CMS data
+4. Merge `dev` into `main` only after approval
+5. Deploy production only from the approved `main` state
+
 ## Supabase Architecture
 
 ```text

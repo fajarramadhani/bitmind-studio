@@ -172,12 +172,13 @@ prada-badminton-club
 Products:
 
 ```text
-bitmind-website-starter
-landing-page-kit
+bitmind-moments
+moneara
 ```
 
 Existing public slugs and URLs are preserved. Local source files remain available
-for explicit migration/development mode.
+for explicit migration/development mode. The product seed inventory now matches
+`src/data/products.ts` (BITMIND Moments and Moneara).
 
 ## Public Website Integration
 

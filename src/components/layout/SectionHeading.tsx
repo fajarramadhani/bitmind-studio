@@ -27,17 +27,25 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? (
-        <p className="text-sm font-medium uppercase tracking-wider text-accent">
+        <p
+          className={cn(
+            "flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-accent",
+            align === "center" && "justify-center"
+          )}
+        >
+          {align === "left" ? (
+            <span aria-hidden className="h-px w-6 bg-accent/60" />
+          ) : null}
           {eyebrow}
         </p>
       ) : null}
-      <Heading className="max-w-2xl text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+      <Heading className="max-w-2xl text-balance text-[clamp(2rem,4vw,3.25rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground">
         {title}
       </Heading>
       {description ? (
         <p
           className={cn(
-            "max-w-2xl text-lg leading-relaxed text-muted-foreground",
+            "max-w-2xl text-pretty text-[clamp(1.05rem,1.4vw,1.25rem)] leading-relaxed text-muted-foreground",
             align === "center" && "mx-auto"
           )}
         >

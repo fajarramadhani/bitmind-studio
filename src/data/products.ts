@@ -2,21 +2,21 @@ import type { Product } from "@/types"
 
 export const products: Product[] = [
   {
-    slug: "bitmind-website-starter",
-    title: "BITMIND Website Starter",
-    category: "Website Template",
+    slug: "bitmind-moments",
+    title: "BITMIND Moments",
+    category: "Digital Experience",
     shortDescription:
-      "Production-ready Next.js starter for modern business websites.",
+      "Beautiful digital experiences for life's meaningful moments. A privacy-safe umbrella for weddings, birthdays, anniversaries, and celebrations.",
     status: "coming-soon",
     featured: true,
   },
   {
-    slug: "landing-page-kit",
-    title: "Landing Page Kit",
-    category: "UI Kit",
+    slug: "moneara",
+    title: "Moneara",
+    category: "Financial Product",
     shortDescription:
-      "Complete UI kit for building high-converting landing pages.",
+      "A BITMIND-owned personal finance product direction designed for calmer money management and clearer daily decisions.",
     status: "coming-soon",
-    featured: false,
+    featured: true,
   },
 ]

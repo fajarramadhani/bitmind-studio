@@ -9,7 +9,6 @@ export function ContactHero() {
     <Section className="pt-32 md:pt-40 lg:pt-48">
       <Container>
         <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-24 lg:items-start">
-          {/* Left: Intro & Trust */}
           <FadeIn>
             <div className="flex flex-col gap-8">
               <div className="flex flex-col gap-4">
@@ -20,34 +19,35 @@ export function ContactHero() {
                   Tell us what you&apos;re building and we&apos;ll help define the best next step.
                 </h1>
                 <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">
-                  Whether you need a company profile website, a landing page, a
-                  redesign or a custom web application, we&apos;ll review your project
-                  details and recommend a practical next step.
+                  Whether you need a website, interface design, a digital
+                  experience, a business system, or a custom digital product,
+                  BITMIND will review the project direction and recommend a
+                  practical next step.
                 </p>
               </div>
 
               <div className="border-t border-border pt-8">
-                <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-4">
+                <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
                   What We Need From You
                 </h2>
                 <ul className="flex flex-col gap-3">
                   {[
-                    "Company information",
-                    "Logo / brand assets",
-                    "Website content",
-                    "Reference websites",
-                    "Product / service information",
-                    "Feedback during review",
+                    "Project context or business background",
+                    "Existing website, product, or workflow references",
+                    "Key goals and required outcomes",
+                    "Relevant content or brand materials",
+                    "Any technical or timing constraints",
+                    "Feedback during the review process",
                   ].map((item) => (
-                    <li key={item} className="text-sm text-muted-foreground flex items-start gap-2">
+                    <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
                       <span className="text-accent">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
                 <p className="mt-4 text-sm text-muted-foreground">
-                  Don&apos;t have everything ready yet? We can help define the
-                  structure first.
+                  Don&apos;t have everything ready yet? We can still start by defining
+                  the direction and what the project actually needs.
                 </p>
               </div>
 
@@ -63,10 +63,9 @@ export function ContactHero() {
             </div>
           </FadeIn>
 
-          {/* Right: Form */}
           <FadeIn delay={0.1}>
             <div className="border-t border-border pt-8 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-0">
-              <h2 className="text-xl font-semibold tracking-tight text-foreground mb-6">
+              <h2 className="mb-6 text-xl font-semibold tracking-tight text-foreground">
                 Tell Us About Your Project
               </h2>
               <Suspense

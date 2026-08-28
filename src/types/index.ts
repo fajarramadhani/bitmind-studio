@@ -48,8 +48,11 @@ export type Service = {
   title: string
   shortDescription: string
   description?: string
+  valueStatement?: string
+  subOffers?: string[]
   idealFor?: string[]
   deliverables?: string[]
+  ctaLabel?: string
   featured?: boolean
 }
 
@@ -80,4 +83,9 @@ export type Product = {
 export type NavigationItem = {
   label: string
   href: string
+}
+
+export type InquiryFormState = {
+  status: "idle" | "loading" | "success" | "error"
+  message: string
 }
