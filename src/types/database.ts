@@ -99,6 +99,22 @@ export type ProductMediaRow = {
   created_at: string
 }
 
+export type InquiryRow = {
+  id: string
+  name: string
+  email: string
+  whatsapp: string | null
+  company: string | null
+  project_type: string
+  budget: string
+  timeline: string
+  description: string
+  reference: string | null
+  status: "new" | "contacted" | "qualified" | "archived"
+  created_at: string
+  updated_at: string
+}
+
 export type Database = {
   public: {
     Tables: {
@@ -123,39 +139,7 @@ export type Database = {
       project_media: Table<ProjectMediaRow, Partial<ProjectMediaRow> & Pick<ProjectMediaRow, "project_id" | "storage_path" | "public_url" | "alt_text">, Partial<ProjectMediaRow>>
       products: Table<ProductRow, Partial<ProductRow> & Pick<ProductRow, "slug" | "title" | "category" | "short_description">, Partial<ProductRow>>
       product_media: Table<ProductMediaRow, Partial<ProductMediaRow> & Pick<ProductMediaRow, "product_id" | "storage_path" | "public_url" | "alt_text">, Partial<ProductMediaRow>>
-      inquiries: Table<
-        {
-          id: string
-          name: string
-          email: string
-          whatsapp: string | null
-          company: string | null
-          project_type: string
-          budget: string
-          timeline: string
-          description: string
-          reference: string | null
-          status: "new" | "contacted" | "qualified" | "archived"
-          created_at: string
-          updated_at: string
-        },
-        {
-          id?: string
-          name: string
-          email: string
-          whatsapp?: string | null
-          company?: string | null
-          project_type: string
-          budget: string
-          timeline: string
-          description: string
-          reference?: string | null
-          status?: "new" | "contacted" | "qualified" | "archived"
-        },
-        {
-          status?: "new" | "contacted" | "qualified" | "archived"
-        }
-      >
+            inquiries: Table<InquiryRow, Partial<InquiryRow> & Pick<InquiryRow, "name" | "email" | "project_type" | "budget" | "timeline" | "description">, Partial<InquiryRow>>
     }
     Views: Record<string, never>
     Functions: {

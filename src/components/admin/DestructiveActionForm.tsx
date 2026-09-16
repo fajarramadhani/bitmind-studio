@@ -4,6 +4,7 @@ import { useState } from "react"
 import {
   archiveProductAction,
   archiveProjectAction,
+  deleteInquiryAction,
   deleteMediaAction,
   deleteProductAction,
   deleteProjectAction,
@@ -11,7 +12,13 @@ import {
 import { SubmitButton } from "@/components/admin/SubmitButton"
 
 type DestructiveActionFormProps = {
-  action: "archive-project" | "delete-project" | "archive-product" | "delete-product" | "delete-media"
+  action:
+    | "archive-project"
+    | "delete-project"
+    | "archive-product"
+    | "delete-product"
+    | "delete-media"
+    | "delete-inquiry"
   id?: string
   entityType?: "project" | "product"
   entityId?: string
@@ -24,6 +31,7 @@ const actions = {
   "archive-product": archiveProductAction,
   "delete-product": deleteProductAction,
   "delete-media": deleteMediaAction,
+  "delete-inquiry": deleteInquiryAction,
 } as const
 
 export function DestructiveActionForm({ action, id, entityType, entityId, mediaId }: DestructiveActionFormProps) {
