@@ -12,6 +12,7 @@ import {
 const allowedTypes = ["image/png", "image/jpeg", "image/webp", "image/avif"]
 const maxFileSize = 8 * 1024 * 1024
 const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+const inquiryStatuses = ["new", "contacted", "qualified", "archived"] as const
 
 function safeAdminPath(value: FormDataEntryValue | null) {
   const path = String(value ?? "")
@@ -285,6 +286,35 @@ export async function deleteProductAction(form: FormData) {
   if (error) redirect("/admin/products?error=delete")
   revalidateContent(product.slug, product.slug, "product")
   redirect("/admin/products?deleted=1")
+}
+
+export async function updateInquiryStatusAction(form: FormData) {
+  await requireAdmin()
+  const id = String(form.get("id") ?? "")
+  const status = String(form.get("status") ?? "")
+  if (!uuidPattern.test(id) || !inquiryStatuses.includes(status as (typeof inquiryStatuses)[number])) {
+      redirect("/admin/inquiries?error=invalid-status")
+    }
+  const supabase = await createClient()
+  const { error } = await supabase
+    .from("inquiries")
+    .update({ status: status as (typeof inquiryStatuses)[number] })
+    .eq("id", id)
+  if (error) redirect("/admin/inquiries?error=update")
+  revalidatePath("/admin/inquiries")
+  redirect("/admin/inquiries?status-updated=1")
+}
+
+export async function deleteInquiryAction(form: FormData) {
+  await requireAdmin()
+  if (String(form.get("confirmation") ?? "") !== "DELETE") redirect("/admin/inquiries?error=confirmation")
+  const id = String(form.get("id") ?? "")
+  if (!uuidPattern.test(id)) redirect("/admin/inquiries?error=invalid-id")
+  const supabase = await createClient()
+  const { error } = await supabase.from("inquiries").delete().eq("id", id)
+  if (error) redirect("/admin/inquiries?error=delete")
+  revalidatePath("/admin/inquiries")
+  redirect("/admin/inquiries?deleted=1")
 }
 
 export async function uploadMediaAction(form: FormData) {

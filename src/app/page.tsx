@@ -1,6 +1,7 @@
 import { HeroSection } from "@/components/sections/HeroSection"
 import { SelectedWorkSection } from "@/components/sections/SelectedWorkSection"
 import { ServicesSection } from "@/components/sections/ServicesSection"
+import { PricingSection } from "@/components/sections/PricingSection"
 import { FeaturedProductSection } from "@/components/sections/FeaturedProductSection"
 import { ProductsSection } from "@/components/sections/ProductsSection"
 import { ProcessSection } from "@/components/sections/ProcessSection"
@@ -30,6 +31,7 @@ export default async function Home() {
       <HeroSection project={null} />
       <SelectedWorkSection projects={verifiedProjects} />
       <ServicesSection />
+      <PricingSection />
       <FeaturedProductSection />
       <ProductsSection products={featuredProducts} />
       <ProcessSection />

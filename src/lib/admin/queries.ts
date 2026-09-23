@@ -2,6 +2,7 @@ import "server-only"
 
 import { createClient } from "@/lib/supabase/server"
 import type {
+  InquiryRow,
   ProductMediaRow,
   ProductRow,
   ProjectMediaRow,
@@ -61,4 +62,15 @@ export async function getAdminProductById(id: string) {
     ])
   if (error || mediaError) throw new Error("Unable to load product.")
   return { product: product as ProductRow, media: (media ?? []) as ProductMediaRow[] }
+}
+
+export async function getAdminInquiries() {
+  await requireAdmin()
+  const supabase = await createClient()
+  const { data, error } = await supabase
+    .from("inquiries")
+    .select("*")
+    .order("created_at", { ascending: false })
+  if (error) throw new Error("Unable to load inquiries.")
+  return (data ?? []) as InquiryRow[]
 }

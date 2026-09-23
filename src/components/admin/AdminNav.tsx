@@ -7,6 +7,7 @@ const adminLinks = [
   ["Overview", "/admin"],
   ["Projects", "/admin/projects"],
   ["Products", "/admin/products"],
+  ["Inquiries", "/admin/inquiries"],
 ] as const
 
 export function AdminNav() {

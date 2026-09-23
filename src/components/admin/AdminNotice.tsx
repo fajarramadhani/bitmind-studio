@@ -15,7 +15,9 @@ export function AdminNotice() {
       ? "Product"
       : pathname.includes("/projects")
         ? "Project"
-        : "Item"
+        : pathname.includes("/inquiries")
+          ? "Inquiry"
+          : "Item"
     const error = currentSearchParams.get("error")
     if (error) {
       const messageMap: Record<string, string> = {
@@ -38,6 +40,8 @@ export function AdminNotice() {
         "storage-delete": "Unable to delete the stored media. Please try again.",
         "media-update": "Unable to save media details. Please try again.",
         "delete-media": "Unable to delete media. Please try again.",
+                "invalid-status": "That status is invalid.",
+                update: "Unable to update the inquiry. Please try again.",
       }
       return {
         tone: "error" as const,
@@ -55,6 +59,7 @@ export function AdminNotice() {
       ["media-deleted", "Media deleted successfully."],
       ["archived", `${entity} archived successfully.`],
       ["deleted", `${entity} deleted successfully.`],
+      ["status-updated", "Inquiry status updated successfully."],
     ]
 
     const match = successMap.find(([key]) => currentSearchParams.get(key) === "1")
@@ -66,7 +71,7 @@ export function AdminNotice() {
     pushToast(toast)
 
     const params = new URLSearchParams(currentSearchParams.toString())
-    ;["error", "logged-in", "logged-out", "saved", "published", "uploaded", "media-saved", "media-deleted", "archived", "deleted"].forEach((key) => {
+    ;["error", "logged-in", "logged-out", "saved", "published", "uploaded", "media-saved", "media-deleted", "archived", "deleted", "status-updated"].forEach((key) => {
       params.delete(key)
     })
     const next = params.toString()
