@@ -1,5 +1,4 @@
 create schema if not exists private;
-
 revoke all on schema private from public, anon;
 grant usage on schema private to authenticated;
 
@@ -18,8 +17,6 @@ $$;
 
 revoke all on function private.is_admin() from public, anon;
 grant execute on function private.is_admin() to authenticated;
-
-revoke all on function public.is_admin() from public, anon;
 
 drop policy if exists "Admins can manage profiles" on public.profiles;
 create policy "Admins can manage profiles" on public.profiles for all to authenticated
@@ -84,4 +81,5 @@ drop policy if exists "Admins can delete CMS media" on storage.objects;
 create policy "Admins can delete CMS media" on storage.objects for delete to authenticated
 using (bucket_id in ('project-media', 'product-media') and (select private.is_admin()));
 
+revoke all on function public.is_admin() from public, anon, authenticated;
 drop function if exists public.is_admin();

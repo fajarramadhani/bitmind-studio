@@ -45,4 +45,4 @@ with check (true);
 
 drop policy if exists "Admins can manage inquiries" on public.inquiries;
 create policy "Admins can manage inquiries" on public.inquiries for all to authenticated
-using ((select public.is_admin())) with check ((select public.is_admin()));
+using ((select private.is_admin())) with check ((select private.is_admin()));

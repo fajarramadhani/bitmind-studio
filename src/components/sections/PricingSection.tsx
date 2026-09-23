@@ -237,7 +237,7 @@ export function PricingSection() {
               Have something different in mind?
             </p>
             <p className="text-muted-foreground">
-              Let's discuss what you're building.
+              Let{"'"}s discuss what you{"'"}re building.
             </p>
             <Button href="/contact" variant="ghost" size="lg">
               Discuss Your Project

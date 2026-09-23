@@ -42,7 +42,7 @@ CTA "Learn more" + arrow icon menggunakan `opacity-0 group-hover:opacity-100`. D
 
 **Files Baru:**
 - `src/app/contact/actions.ts` — Server Action `submitInquiry`
-- `supabase/migrations/002_inquiries.sql` — Tabel `inquiries` + RLS policies
+- `supabase/migrations/20260924000000_inquiries.sql` — Tabel `inquiries` + RLS policies
 
 **Files Diubah:**
 - `src/components/sections/InquiryForm.tsx` — Wired ke `useActionState`
@@ -384,7 +384,7 @@ Tidak perlu perubahan tambahan. Struktur metadata sudah benar.
 | `src/app/contact/actions.ts` | #2 | Server Action submitInquiry |
 | `src/app/error.tsx` | #7 | General error boundary |
 | `src/app/not-found.tsx` | #7 | 404 page |
-| `supabase/migrations/002_inquiries.sql` | #2 | Inquiries table + RLS |
+| `supabase/migrations/20260924000000_inquiries.sql` | #2 | Inquiries table + RLS |
 | `tests/content-inventory.test.mts` | — | Regression test untuk inventory |
 | `src/lib/product-presentation.ts` | — | Product presentation helpers |
 | `src/lib/project-portfolio.ts` | — | Project portfolio helpers |
@@ -433,7 +433,7 @@ npm run test     # PASS — 17/17 tests passing
 
 1. **WhatsApp Number** — `src/config/site.ts:7` masih placeholder `6281234567890`. Harus diganti nomor aktual.
 2. **Social Links** — Instagram/LinkedIn/GitHub masih placeholder URL. Harus diganti URL aktual.
-3. **Supabase Migration** — `supabase/migrations/002_inquiries.sql` belum di-apply ke Supabase project production.
+3. **Supabase Migration** — `supabase/migrations/20260924000000_inquiries.sql` belum di-apply ke Supabase project production.
 4. **Environment Variables** — Pastikan `.env.local` production punya `NEXT_PUBLIC_SITE_URL`, Supabase keys, dll.
 
 ---

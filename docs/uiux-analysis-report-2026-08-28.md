@@ -108,7 +108,7 @@ Sebelum melakukan deployment ke lingkungan *Production*, beberapa item konfigura
 
 - [ ] **WhatsApp Number:** Memperbarui placeholder nomor WhatsApp pada `src/config/site.ts` dengan nomor operasional resmi.
 - [ ] **Social Media Links:** Memastikan URL Instagram, LinkedIn, dan GitHub pada `src/config/site.ts` mengarah ke akun aktif BITMIND.
-- [ ] **Supabase Migration:** Memastikan skema database `supabase/migrations/002_inquiries.sql` telah dieksekusi di database production.
+- [ ] **Supabase Migration:** Memastikan skema database `supabase/migrations/20260924000000_inquiries.sql` telah dieksekusi di database production.
 - [ ] **Environment Variables:** Memastikan `NEXT_PUBLIC_SITE_URL` dan API key Supabase terkonfigurasi dengan benar di Vercel/Hosting Provider.
 
 ---
